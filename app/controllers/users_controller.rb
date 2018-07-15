@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       if @user.save
         session[:user_id] = @user.id
         flash[:notice] = "You have signed up!"
-        redirect_to root_path
+        redirect_to users_path
       else 
         render :new
       end
@@ -41,8 +41,8 @@ class UsersController < ApplicationController
       def set_user
         @user = user.find(params[:id])
       end
-      
+
       def user_params
-        params.require(:user).permit(:name, :email, :password, :password_confirmation)
+        params.require(:user).permit(:username, :email, :password, :password_confirmation, :age, :gender, :zipcode)
       end
 end
