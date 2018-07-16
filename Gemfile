@@ -57,3 +57,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Add Bootstrap
 gem 'bootstrap'
 gem 'jquery-rails'
+
+# AWS
+gem 'aws-sdk-s3'
