@@ -12,14 +12,20 @@ class UsersController < ApplicationController
   
     def new
       @user = User.new
+      @editions = Edition.all
+      @roles = Role.all
     end
   
     def edit
+      @editions = Edition.all
+      @roles = Role.all
     end
 
     def create
       @user = User.new(user_params)
       @user.image.attach(params[:user][:image])
+      @editions = Edition.all
+      @roles = Role.all
       if @user.save
         session[:user_id] = @user.id
         redirect_to users_path
@@ -29,14 +35,14 @@ class UsersController < ApplicationController
     end
   
     def update
-      respond_to do |format|
-        if @user.update(user_params)
-          format.html { redirect_to @user}
-          format.json { render :show, status: :ok, location: @user }
-        else
-          format.html { render :edit }
-          format.json { render json: @user.errors, status: :unprocessable_entity }
-        end
+      current_user.user_editions.destroy_all
+      params[:editions].each do |edition_id|
+        UserEdition.create(user: current_user, edition_id: edition_id)
+      end
+      if current_user.update_attributes(user_params)
+        redirect_to current_user
+      else
+        render :edit
       end
     end
   

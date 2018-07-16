@@ -46,6 +46,13 @@
     <%= f.label 'Profile Picture' %>
     <%= f.file_field :image %>
   </div>
-  <p>selection options of dnd classes and edditions go here from those models</p>
+  <div class="field">
+    <%= f.label 'Editions' %>
+    <% @editions.each do |edition| %>
+      <%= edition.name %>
+      <%= check_box_tag 'editions[]', edition.id, (current_user ? current_user.editions.exists?(edition.id) : false) %>
+    <% end %>
+  </div>
+  <p>selection options of dnd classes and editions go here from those models</p>
   <div class="actions"><%= f.submit %></div>
 <% end %>

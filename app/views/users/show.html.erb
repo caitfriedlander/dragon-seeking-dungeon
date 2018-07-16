@@ -3,17 +3,28 @@
     <h4>About</h4>
     <div class="aboutme">
         <ul>
+            <li><%= image_tag @user.image %></li>
             <li>Age: <%= @user.age %></li>
             <li>Zipcode: <%= @user.zipcode %></li>
             <li>Gender: <%= @user.gender %></li>
             <li>Bio: <%= @user.bio %></li>
-            <li>Edditions: </li>
+            <li>Editions: 
+                <% @user.editions.each do |edition| %>
+                    <%= edition.name %>
+                <% end %>
+            </li>
             <li>Role Preferences: </li>
         </ul>
         <button><%= link_to 'Edit', edit_user_path %></button>
     </div>
     <div class="mycampaigns">
         <h4>My Campaigns</h4>
+        <% @user.campaigns.each do |campaign| %>
+            <div>
+                <h5><%= link_to campaign.name, campaign %></h5>
+                <p>Module - Eddition</p>
+            </div>
+        <% end %>
         <button><%= link_to 'New', new_campaign_path %></button>
     </div>
 <% else %>
@@ -24,11 +35,21 @@
             <li>Zipcode: <%= @user.zipcode %></li>
             <li>Gender: <%= @user.gender %></li>
             <li>Bio: <%= @user.bio %></li>
-            <li>Edditions: </li>
+            <li>Edditions: 
+                <% @user.editions do |edition| %>
+                    <%= edition.name %>
+                <% end %>
+            </li>
             <li>Role Preferences: </li>
         </ul>
     </div>
     <div class="mycampaigns">
         <h4>Campaigns</h4>
+        <% @user.campaigns.each do |campaign| %>
+            <div>
+                <h5><%= link_to campaign.name, campaign %></h5>
+                <p>Module - Eddition</p>
+            </div>
+        <% end %>
     </div>
 <% end %>
