@@ -1,0 +1,7 @@
+<h1>I'm a user page</h1>
+
+<% if @user.id == current_user[:id] %>
+    <p>I'm you</p>
+<% else %>
+    <p>I'm someone else</p>
+<% end %>
