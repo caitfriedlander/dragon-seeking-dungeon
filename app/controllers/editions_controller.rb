@@ -1,0 +1,3 @@
+class EditionsController < ApplicationController
+
+end
