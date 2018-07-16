@@ -1,1 +1,24 @@
-<h1>Users Search Goes Here</h1>
+<h1>Users Search</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>&nbsp;&nbsp;&nbsp;&nbsp;Username&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>Zipcode&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>Roles&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>Editions</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to user.username, user %></td>
+        <td><%= user.zipcode %></td>
+        <td>Roles</td>
+        <td>Edditions</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
