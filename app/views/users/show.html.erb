@@ -1,16 +1,16 @@
 <% if @user.id == current_user[:id] %>
     <h1><%= @user.username %></h1>
+    <h4>About</h4>
     <div class="aboutme">
-        <h4>About Me</h4>
-        <button><%= link_to 'Edit', edit_user_path %></button>
         <ul>
             <li>Age: <%= @user.age %></li>
             <li>Zipcode: <%= @user.zipcode %></li>
             <li>Gender: <%= @user.gender %></li>
-            <li>Bio: </li>
+            <li>Bio: <%= @user.bio %></li>
             <li>Edditions: </li>
             <li>Role Preferences: </li>
         </ul>
+        <button><%= link_to 'Edit', edit_user_path %></button>
     </div>
     <div class="mycampaigns">
         <h4>My Campaigns</h4>
@@ -19,12 +19,11 @@
 <% else %>
     <h1><%= @user.username %></h1>
     <div class="aboutme">
-        <h4>About</h4>
         <ul>
             <li>Age: <%= @user.age %></li>
             <li>Zipcode: <%= @user.zipcode %></li>
             <li>Gender: <%= @user.gender %></li>
-            <li>Bio: </li>
+            <li>Bio: <%= @user.bio %></li>
             <li>Edditions: </li>
             <li>Role Preferences: </li>
         </ul>
