@@ -1,0 +1,2 @@
+class StoryModule < ApplicationRecord
+end
