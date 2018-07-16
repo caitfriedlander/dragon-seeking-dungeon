@@ -1,1 +1,26 @@
-<h1>All campaigns</h1>
+<h1>Campaign Search</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>&nbsp;&nbsp;&nbsp;&nbsp;Campaign Title&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>Description&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>Online&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>Module</th>
+      <th>Edition</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @campaigns.each do |campaign| %>
+      <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to campaign.name, campaign %></td>
+        <td><%= campaign.description %></td>
+        <td><%= campaign.online %></td>
+        <td>Module</td>
+        <td>Eddition</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

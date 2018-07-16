@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_16_182917) do
+ActiveRecord::Schema.define(version: 2018_07_16_183812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(version: 2018_07_16_182917) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "campaign_modules", force: :cascade do |t|
+    t.bigint "campaign_id"
+    t.bigint "story_module_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campaign_id"], name: "index_campaign_modules_on_campaign_id"
+    t.index ["story_module_id"], name: "index_campaign_modules_on_story_module_id"
   end
 
   create_table "campaigns", force: :cascade do |t|
@@ -107,6 +116,8 @@ ActiveRecord::Schema.define(version: 2018_07_16_182917) do
     t.text "bio"
   end
 
+  add_foreign_key "campaign_modules", "campaigns"
+  add_foreign_key "campaign_modules", "story_modules"
   add_foreign_key "campaigns", "users"
   add_foreign_key "signups", "campaigns"
   add_foreign_key "signups", "users"

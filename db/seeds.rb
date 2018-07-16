@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+users = User.create([
+    {email: "ex1@email.com", username: "name1", age: 18, gender: "F", zipcode: 10000, active: true, password: "password", password_confirmation: "password", bio: "I love TTRPGS!"},
+    {email: "ex2@email.com", username: "name2", age: 28, gender: "F", zipcode: 20000, active: true, password: "password", password_confirmation: "password", bio: "I love TTRPGS!"},
+    {email: "ex3@email.com", username: "name3", age: 38, gender: "F", zipcode: 30000, active: true, password: "password", password_confirmation: "password", bio: "I love TTRPGS!"},
+    {email: "ex4@email.com", username: "name4", age: 48, gender: "F", zipcode: 40000, active: true, password: "password", password_confirmation: "password", bio: "I love TTRPGS!"},
+    {email: "ex5@email.com", username: "name5", age: 58, gender: "F", zipcode: 50000, active: true, password: "password", password_confirmation: "password", bio: "I love TTRPGS!"},
+    {email: "ex6@email.com", username: "name6", age: 68, gender: "F", zipcode: 60000, active: true, password: "password", password_confirmation: "password", bio: "I love TTRPGS!"}
+])
+
+campaigns = Campaign.create([
+    {name: "My Campaign", online: false, size: 4, description: "Blah blah blah orcs!", full: false, user_id: 2},
+    {name: "Curse of Strahd", online: false, size: 7, description: "It's always sunny in Barovia.", full: false, user_id: 2},
+    {name: "Tomb of Anihilation", online: false, size: 5, description: "No one's getting out alive.", full: false, user_id: 1}
+])
