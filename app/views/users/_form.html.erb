@@ -47,17 +47,21 @@
     <%= f.file_field :image %>
   </div>
   <div class="field">
-    <%= f.label 'Favorite Editions: ' %>
+    <%= f.label 'Favorite Editions: ' %> 
+    <br>
     <% @editions.each do |edition| %>
       <%= edition.name %>
-      <%= check_box_tag 'editions[]', edition.id, (current_user ? current_user.editions.exists?(edition.id) : false) %>
+      <%= check_box_tag 'editions[]', edition.id, (current_user ? current_user.editions.exists?(edition.id) : false) %> 
+      <br>
     <% end %>
   </div>
   <div class="field">
     <%= f.label 'Favorite Classes: ' %>
+    <br>
     <% @roles.each do |role| %>
       <%= role.name %>
       <%= check_box_tag 'roles[]', role.id, (current_user ? current_user.roles.exists?(role.id) : false) %>
+      <br>
     <% end %>
   </div>
   <div class="actions"><%= f.submit %></div>

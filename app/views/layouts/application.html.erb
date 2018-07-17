@@ -17,8 +17,6 @@
         <% if current_user %>
           Welcome, <%= link_to current_user.username, "/users/#{current_user[:id]}" %>!
           &nbsp;&nbsp;|&nbsp;&nbsp;
-          <%= link_to 'Home', root_path %>
-          &nbsp;&nbsp;|&nbsp;&nbsp;
           <%= link_to 'User Search', users_path %>
           &nbsp;&nbsp;|&nbsp;&nbsp;
           <%= link_to 'Campaign Search', campaigns_path %>

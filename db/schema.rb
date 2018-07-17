@@ -36,15 +36,6 @@ ActiveRecord::Schema.define(version: 2018_07_17_161858) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "campaign_modules", force: :cascade do |t|
-    t.bigint "campaign_id"
-    t.bigint "story_module_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["campaign_id"], name: "index_campaign_modules_on_campaign_id"
-    t.index ["story_module_id"], name: "index_campaign_modules_on_story_module_id"
-  end
-
   create_table "campaigns", force: :cascade do |t|
     t.string "name"
     t.boolean "online"
@@ -80,13 +71,6 @@ ActiveRecord::Schema.define(version: 2018_07_17_161858) do
     t.index ["user_id"], name: "index_signups_on_user_id"
   end
 
-  create_table "story_modules", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "user_editions", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "edition_id"
@@ -118,8 +102,6 @@ ActiveRecord::Schema.define(version: 2018_07_17_161858) do
     t.text "bio"
   end
 
-  add_foreign_key "campaign_modules", "campaigns"
-  add_foreign_key "campaign_modules", "story_modules"
   add_foreign_key "campaigns", "editions"
   add_foreign_key "campaigns", "users"
   add_foreign_key "signups", "campaigns"

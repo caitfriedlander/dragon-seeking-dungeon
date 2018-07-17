@@ -1,12 +1,18 @@
 <h1>Campaign Search</h1>
-
+<div class="searchbar">
+    <%= form_tag( campaigns_path, method: :get) do %>
+        <h3>Search: </h3>
+        <%= text_field_tag :search, params[:search], placeholder: "Search..." %>
+        <%= select(nil, :edition, Edition.all.collect {|e| [e.name, e.name]}, {include_blank: true}) %>
+        <%= submit_tag "Search!" %>
+    <% end %>
+</div>
 <table>
   <thead>
     <tr>
       <th>&nbsp;&nbsp;&nbsp;&nbsp;Campaign Title&nbsp;&nbsp;&nbsp;&nbsp;</th>
       <th>Description&nbsp;&nbsp;&nbsp;&nbsp;</th>
       <th>Online&nbsp;&nbsp;&nbsp;&nbsp;</th>
-      <th>Module&nbsp;&nbsp;&nbsp;&nbsp;</th>
       <th>Edition&nbsp;&nbsp;&nbsp;&nbsp;</th>
       <th>Size</th>
     </tr>
@@ -18,8 +24,7 @@
         <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to campaign.name, campaign %></td>
         <td><%= campaign.description %></td>
         <td><%= campaign.online %></td>
-        <td>Module</td>
-        <td>Eddition</td>
+        <td><%= campaign.edition.name %></td>
         <td><%= campaign.size %></td>
       </tr>
     <% end %>

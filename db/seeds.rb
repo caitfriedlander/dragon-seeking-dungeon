@@ -6,39 +6,55 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Edition.destroy_all
+Role.destroy_all
+User.destroy_all
+Campaign.destroy_all
+
+editions = Edition.create([
+    {name: "1st"},
+    {name: "2nd"},
+    {name: "3rd"},
+    {name: "3.5"},
+    {name: "4th"},
+    {name: "5th"},
+    {name: "Pathfinder"},
+    {name: "Other"}
+])
+
+roles = Role.create([
+    {name: "Bard"},
+    {name: "Barbarian"},
+    {name: "Cleric"},
+    {name: "Druid"},
+    {name: "Fighter"},
+    {name: "Monk"},
+    {name: "Paladin"},
+    {name: "Rogue"},
+    {name: "Ranger"},
+    {name: "Sorcerer"},
+    {name: "Warlock"},
+    {name: "Wizard"},
+    {name: "Other"}
+])
+
 users = User.create([
     {email: "ex1@email.com", username: "name1", age: 18, gender: "F", zipcode: 10000, active: true, password: "password", password_confirmation: "password", bio: "I love TTRPGS!"},
     {email: "ex2@email.com", username: "name2", age: 28, gender: "F", zipcode: 20000, active: true, password: "password", password_confirmation: "password", bio: "I love TTRPGS!"},
     {email: "ex3@email.com", username: "name3", age: 38, gender: "F", zipcode: 30000, active: true, password: "password", password_confirmation: "password", bio: "I love TTRPGS!"},
     {email: "ex4@email.com", username: "name4", age: 48, gender: "F", zipcode: 40000, active: true, password: "password", password_confirmation: "password", bio: "I love TTRPGS!"},
     {email: "ex5@email.com", username: "name5", age: 58, gender: "F", zipcode: 50000, active: true, password: "password", password_confirmation: "password", bio: "I love TTRPGS!"},
-    {email: "ex6@email.com", username: "name6", age: 68, gender: "F", zipcode: 60000, active: true, password: "password", password_confirmation: "password", bio: "I love TTRPGS!"}
+    {email: "ex6@email.com", username: "name6", age: 68, gender: "F", zipcode: 60000, active: true, password: "password", password_confirmation: "password", bio: "I love TTRPGS!"},
+    {email: "ex7@email.com", username: "name7", age: 78, gender: "F", zipcode: 70000, active: true, password: "password", password_confirmation: "password", bio: "I love TTRPGS!"},
+    {email: "ex8@email.com", username: "name8", age: 88, gender: "F", zipcode: 80000, active: true, password: "password", password_confirmation: "password", bio: "I love TTRPGS!"}
 ])
 
 campaigns = Campaign.create([
-    {name: "My Campaign", online: false, size: 4, description: "Blah blah blah orcs!", full: false, user_id: 2},
-    {name: "Curse of Strahd", online: false, size: 7, description: "It's always sunny in Barovia.", full: false, user_id: 2},
-    {name: "Tomb of Anihilation", online: false, size: 5, description: "No one's getting out alive.", full: false, user_id: 1}
-])
-
-stories = StoryModule.create([
-    {name: 'Lost Mine of Phandelver', description: 'Explore subterranean labyrinths! Plunder hoards of treasure! Battle legendary monsters! The Dungeons & Dragons Starter Set is your gateway to action-packed stories of the imagination. This box contains the essential rules of the game plus everything you need to play heroic characters on perilous adventures in worlds of fantasy.'},
-    {name: 'Hoard of the Dragon Queen', description: 'In an audacious bid for power, the Cult of the Dragon, along with its dragon allies and the Red Wizards of Thay, seek to bring Tiamat from her prison in the Nine Hells to Faerûn. To this end, they are sweeping from town to town, laying waste to all those who oppose them and gathering a hoard of riches for their dread queen. The threat of annihilation has become so dire that groups as disparate as the Harpers and Zhentarim are banding together in the fight against the cult. Never before has the need for heroes been so desperate.'},
-    {name: 'The Rise of Tiamat', description: 'Called by the Elder Elemental Eye to serve, four corrupt prophets have risen from the depths of anonymity to claim mighty weapons with direct links to the power of the elemental princes. Each of these prophets has assembled a cadre of cultists and creatures to serve them in the construction of four elemental temples of lethal design. It is up to adventurers from heroic factions such as the Emerald Enclave and the Order of the Gauntlet to discover where the true power of each prophet lay, and dismantle it before it comes boiling up to obliterate the Realms.'},
-    {name: 'Princes of the Apocalypse', description: 'Explore subterranean labyrinths! Plunder hoards of treasure! Battle legendary monsters! The Dungeons & Dragons Starter Set is your gateway to action-packed stories of the imagination. This box contains the essential rules of the game plus everything you need to play heroic characters on perilous adventures in worlds of fantasy.'},
-    {name: 'Out of the Abyss', description: 'The Underdark is a subterranean wonderland, a vast and twisted labyrinth where fear reigns. It is the home of horrific monsters that have never seen the light of day. It is here that the dark elf Gromph Baenre, Archmage of Menzoberranzan, casts a foul spell meant to ignite a magical energy that suffuses the Underdark and tears open portals to the demonic Abyss. What steps through surprises even him, and from that moment on, the insanity that pervades the Underdark escalates and threatens to shake the Forgotten Realms to its foundations. Stop the madness before it consumes you!'},
-    {name: 'Curse of Strahd', description: 'Under raging storm clouds, the vampire Count Strahd von Zarovich stands silhouetted against the ancient walls of Castle Ravenloft. Rumbling thunder pounds the castle spires. The wind’s howling increases as he turns his gaze down toward the village of Barovia. A lightning flash rips through the darkness, but Strahd is gone. Only the howling of the wind fills the midnight air. The master of Castle Ravenloft is having guests for dinner—and you are invited.'},
-    {name: "Storm King's Thunder", description: 'Giants have emerged from their strongholds to threaten civilization as never before. Hill giants are stealing all the grain and livestock they can, while stone giants have been scouring settlements that have been around forever. Fire giants are press-ganging the small folk into the desert, while frost giant longships have been pillaging along the Sword Coast. Even the elusive cloud giants have been witnessed, their wondrous floating cities appearing above Waterdeep and Baldur’s Gate. Where is the storm giant King Hekaton, who is tasked with keeping order among the giants?'},
-    {name: 'Against the Giants', description: 'Under raging storm clouds, the vampire Count Strahd von Zarovich stands silhouetted against the ancient walls of Castle Ravenloft. Rumbling thunder pounds the castle spires. The wind’s howling increases as he turns his gaze down toward the village of Barovia. A lightning flash rips through the darkness, but Strahd is gone. Only the howling of the wind fills the midnight air. The master of Castle Ravenloft is having guests for dinner—and you are invited.'},
-    {name: 'Dead in Thay', description: 'Szass Tam, the lich lord of Thay, and his Red Wizards threaten to dominate all of the Sword Coast. The Bloodgate, an elemental node of power, must be destroyed in order to stop him. This adventure is part two of the Dreams of the Red WizardsSundering storyline, directly tied to Scourge of the Sword Coast, and loosely connected to the events in Ghosts of Dragonspear Castle.'},
-    {name: 'Forge of Fury', description: "The Forge of Fury is a dungeon crawl, or site-based adventure, that describes the stronghold of Khundrukar. The great dwarven smith, Durgeddin the Black, founded the secret stronghold within a great underground cavern system two hundred years ago when he and his clan were driven from their home by a horde of orcs and trolls. The orcs discovered the location of Khundrukar, Durgeddin's home, a century ago when they captured one of Durgeddin's clansmen. The orcs raised a great army that stormed the stronghold and slew the dwarves there, allowing the stronghold's five levels to fall into ruins. Now goblins, orcs and other monsters use the ruins as a base. Legends tell of the extraordinary blades Durgeddin forged in anger, enticing the player characters to come to the ruins of Khundrukar to obtain them."},
-    {name: 'Hidden Shrine of Tamoachan', description: 'Explore the hidden shrine.'},
-    {name: 'Sunless Citadel', description: 'Explore the burried Sunless Citadel.'},
-    {name: 'Tomb of Horrors', description: 'Explore the tomb of the demilich Acererak. The player characters must battle their way past a variety of monsters and traps, with the ultimate goal of destroying Acererak.'},
-    {name: 'Tomb of Annihilation', description: "The talk of the streets and taverns has all been about the so-called death curse: a wasting disease afflicting everyone who’s ever been raised from the dead. Victims grow thinner and weaker each day, slowly but steadily sliding toward the death they once denied. When they finally succumb, they can’t be raised—and neither can anyone else, regardless of whether they’ve ever received that miracle in the past. Temples and scholars of divine magic are at a loss to explain a curse that has affected the entire region, and possibly the entire world. The cause is a necromantic artifact called the Soulmonger, which is located somewhere in Chult, a mysterious peninsula far to the south, ringed with mountains and choked with rainforests."},
-    {name: 'White Plume Mountain', description: "The adventure is a dungeon crawl where the players' characters are hired to retrieve three 'notorious' magical weapons, each possessing its own intelligence."},
-    {name: 'Dragon Heist', description: 'Famed explorer Volothamp Geddarm needs you to complete a simple quest. Thus begins a mad romp through the wards of Waterdeep as you uncover a villainous plot involving some of the city’s most influential figures. A grand urban caper awaits you. Pit your skill and bravado against villains the likes of which you’ve never faced before, and let the dragon hunt begin!'},
-    {name: 'Dungeon of The Mad Mage', description: 'In the city of Waterdeep rests a tavern called the Yawning Portal, named after the gaping pit in its common room. At the bottom of this crumbling shaft is a labyrinthine dungeon shunned by all but the most daring adventurers. Known as Undermountain, this dungeon is the domain of the mad wizard Halaster Blackcloak. Long has the Mad Mage dwelt in these forlorn depths, seeding his lair with monsters, traps, and mysteries—to what end is a constant source of speculation and concern.'},
-    {name: "Homebrew - Tal'Dorei", description: nil},
-    {name: "Homebrew - Other", description: nil}
+    {name: "My Campaign", online: false, size: 4, description: "Blah blah blah orcs!", full: false, user: User.first, edition: Edition.first},
+    {name: "Curse of Strahd", online: false, size: 7, description: "It's always sunny in Barovia.", full: false, user: User.first, edition: Edition.second},
+    {name: "Tomb of Anihilation", online: false, size: 5, description: "No one's getting out alive.", full: false, user: User.first, edition: Edition.third},
+    {name: 'Hidden Shrine of Tamoachan', description: 'Explore the hidden shrine.', online: false, size: 5, full: false, user: User.fifth, edition: Edition.fourth},
+    {name: 'Sunless Citadel', description: 'Explore the burried Sunless Citadel.', online: false, size: 5, full: false, user: User.fifth, edition: Edition.last},
+    {name: "Homebrew - Tal'Dorei", description: "Let's go to Whitestone!", online: false, size: 5, full: false, user: User.second, edition: Edition.first},
+    {name: "Homebrew - Other", description: "This is basically the Adventure Zone but in space.", online: false, size: 5, full: false, user: User.second, edition: Edition.second}
 ])

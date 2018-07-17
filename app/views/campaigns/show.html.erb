@@ -1,5 +1,6 @@
 <% if @campaign.user_id == current_user[:id] %>
     <h1><%= @campaign.name %></h1>
+    <h3>DM: <%= @campaign.user.username %></h3>
     <h3>Campaign Description: </h3>
     <p><%= @campaign.description %></p>
     <h3>Location: </h3>

@@ -6,11 +6,11 @@ class User < ApplicationRecord
     validates :zipcode, presence: true
    
     has_one_attached :image
-    has_many :user_roles
-    has_many :roles, through: :user_roles
-    has_many :user_editions
-    has_many :editions, through: :user_editions
-    has_many :campaigns
+    has_many :user_roles, dependent: :destroy
+    has_many :roles, through: :user_roles, dependent: :destroy
+    has_many :user_editions, dependent: :destroy
+    has_many :editions, through: :user_editions, dependent: :destroy
+    has_many :campaigns, dependent: :destroy
 
     after_initialize :set_defaults
     private
