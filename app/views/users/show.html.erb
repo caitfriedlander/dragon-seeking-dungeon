@@ -8,12 +8,24 @@
             <li>Zipcode: <%= @user.zipcode %></li>
             <li>Gender: <%= @user.gender %></li>
             <li>Bio: <%= @user.bio %></li>
-            <li>Editions: 
+            <li>Favorite Editions:&nbsp; 
                 <% @user.editions.each do |edition| %>
-                    <%= edition.name %>
+                    <% if edition != @user.editions.last %>
+                        <%= edition.name %>,&nbsp;
+                    <% else %>
+                        <%= edition.name %>
+                    <% end %>
                 <% end %>
             </li>
-            <li>Role Preferences: </li>
+            <li>Favorite Classes:&nbsp; 
+                <% @user.roles.each do |role| %>
+                    <% if role != @user.roles.last %>
+                        <%= role.name %>,&nbsp;
+                    <% else %>
+                        <%= role.name %>
+                    <% end %>
+                <% end %>
+            </li>
         </ul>
         <button><%= link_to 'Edit', edit_user_path %></button>
     </div>

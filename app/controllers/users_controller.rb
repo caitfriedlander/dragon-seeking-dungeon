@@ -36,8 +36,12 @@ class UsersController < ApplicationController
   
     def update
       current_user.user_editions.destroy_all
+      current_user.user_roles.destroy_all
       params[:editions].each do |edition_id|
         UserEdition.create(user: current_user, edition_id: edition_id)
+      end
+      params[:roles].each do |role_id|
+        UserRole.create(user: current_user, role_id: role_id)
       end
       if current_user.update_attributes(user_params)
         redirect_to current_user

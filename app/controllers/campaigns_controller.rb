@@ -13,6 +13,7 @@ class CampaignsController < ApplicationController
 
     def new
       @campaign = Campaign.new
+      @editions = Edition.all
     end
 
     def edit
@@ -20,15 +21,12 @@ class CampaignsController < ApplicationController
 
     def create
       @campaign = Campaign.new(campaign_params)
-  
-      respond_to do |format|
-        if @campaign.save
-          format.html { redirect_to @campaign, notice: 'campaign was successfully created.' }
-          format.json { render :show, status: :created, location: @campaign }
-        else
-          format.html { render :new }
-          format.json { render json: @campaign.errors, status: :unprocessable_entity }
-        end
+      @campaign.user = current_user
+      @campaign.full = false
+      if @campaign.save
+        redirect_to @campaign
+      else
+        render :new
       end
     end
 
@@ -58,7 +56,7 @@ class CampaignsController < ApplicationController
       end
   
       def campaign_params
-        params.require(:campaign).permit(:name, :online, :size, :description, :full)
+        params.require(:campaign).permit(:name, :online, :size, :description, :full, :edition_id)
       end
   end
   

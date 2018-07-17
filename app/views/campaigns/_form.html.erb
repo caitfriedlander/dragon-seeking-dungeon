@@ -1,0 +1,33 @@
+<%= form_with(model: campaign, local:true) do |f| %>
+  <% if @campaign.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @campaign.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'Campaign Title: ' %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label 'Online: ' %>
+    <%= f.check_box :online %>  
+  </div>
+  <div class="field">
+    <%= f.label 'Party Size: ' %>
+    <%= f.number_field :size %>
+  </div>
+  <div class="field">
+    <%= f.label 'Description: ' %>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= select(:campaign, "edition_id", Edition.all.collect {|e| [e.name, e.id]}, {include_blank: true}) %>
+  </div>
+  <div class="actions"><%= f.submit %></div>
+<% end %>
