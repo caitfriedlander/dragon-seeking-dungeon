@@ -22,6 +22,7 @@
         <% end %>
     </p>
     <button><%= link_to 'Edit', edit_campaign_path %></button>
+    <button><%= link_to 'Delete', campaign_path(@campaign), method: :delete, data: {confirm: "Are you sure? This action can't be undone!"} %></button>
 <% else %>
     <h1><%= @campaign.name %></h1>
     <h3>Campaign Description: </h3>

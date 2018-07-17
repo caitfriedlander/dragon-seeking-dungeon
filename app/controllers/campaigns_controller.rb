@@ -49,11 +49,9 @@ class CampaignsController < ApplicationController
     end
 
     def destroy
+      @user = current_user
       @campaign.destroy
-      respond_to do |format|
-        format.html { redirect_to campaigns_url, notice: 'campaign was successfully destroyed.' }
-        format.json { head :no_content }
-      end
+      redirect_to @user
     end
   
     private

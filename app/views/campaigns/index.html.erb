@@ -30,13 +30,15 @@
 
   <tbody>
     <% @campaigns.each do |campaign| %>
-      <tr>
-        <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to campaign.name, campaign %></td>
-        <td><%= campaign.description %></td>
-        <td><%= campaign.online %></td>
-        <td><%= campaign.edition.name %></td>
-        <td><%= campaign.size %></td>
-      </tr>
+        <% if campaign.full == false %>
+            <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to campaign.name, campaign %></td>
+            <td><%= campaign.description %></td>
+            <td><%= campaign.online %></td>
+            <td><%= campaign.edition.name %></td>
+            <td><%= campaign.size %></td>
+            </tr>
+        <% end %>
     <% end %>
   </tbody>
 </table>
