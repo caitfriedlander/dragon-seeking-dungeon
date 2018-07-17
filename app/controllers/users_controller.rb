@@ -43,6 +43,11 @@ class UsersController < ApplicationController
       params[:roles].each do |role_id|
         UserRole.create(user: current_user, role_id: role_id)
       end
+
+      if params[:user][:image]
+        current_user.image.attach(params[:user][:image])
+      end
+
       if current_user.update_attributes(user_params)
         redirect_to current_user
       else
@@ -61,6 +66,6 @@ class UsersController < ApplicationController
       end
 
       def user_params
-        params.require(:user).permit(:username, :email, :password, :password_confirmation, :age, :gender, :zipcode, :bio)
+        params.require(:user).permit(:username, :email, :password, :password_confirmation, :age, :gender, :zipcode, :bio, :image)
       end
 end
