@@ -27,6 +27,7 @@
     <%= f.text_field :description %>
   </div>
   <div class="field">
+    <%= f.label 'Edition: ' %>
     <%= select(:campaign, "edition_id", Edition.all.collect {|e| [e.name, e.id]}, {include_blank: true}) %>
   </div>
   <div class="actions"><%= f.submit %></div>

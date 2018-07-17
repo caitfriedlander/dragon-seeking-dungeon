@@ -1,9 +1,19 @@
 <h1>Campaign Search</h1>
 <div class="searchbar">
     <%= form_tag( campaigns_path, method: :get) do %>
-        <h3>Search: </h3>
-        <%= text_field_tag :search, params[:search], placeholder: "Search..." %>
-        <%= select(nil, :edition, Edition.all.collect {|e| [e.name, e.name]}, {include_blank: true}) %>
+        <h4>Search: </h4>
+        <div class="searchgroup">
+            <h6>Keyword: </h6> 
+            <%= text_field_tag :search, params[:search], placeholder: "Search..." %>
+        </div>
+        <div class="searchgroup">
+            <h6>Edition: </h6> 
+            <%= select(nil, :edition, Edition.all.collect {|e| [e.name, e.name]}, {include_blank: true}) %>
+        </div>
+        <div class="searchgroup">
+            <h6>Online: </h6> 
+            <%= select(nil, :online, ["true", "false"], {include_blank: true}) %>
+        </div>
         <%= submit_tag "Search!" %>
     <% end %>
 </div>
