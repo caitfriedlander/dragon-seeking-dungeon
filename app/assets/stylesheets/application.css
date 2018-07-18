@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+body, html {
+    height: 100%;
+}
+ li {
+     list-style: none
+ }
+
+ .profilepic > img {
+     width: 100px;
+     height: 100px;
+ }
+ .profilemod {
+
+ }
+ .profilemod > div {
+     background-color: lightblue;
+ }

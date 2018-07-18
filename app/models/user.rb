@@ -11,6 +11,8 @@ class User < ApplicationRecord
     has_many :user_editions, dependent: :destroy
     has_many :editions, through: :user_editions, dependent: :destroy
     has_many :campaigns, dependent: :destroy
+    has_many :signups, dependent: :destroy
+    has_many :joined_campaigns, through: :signups
 
     after_initialize :set_defaults
     private

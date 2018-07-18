@@ -39,10 +39,10 @@
     <h3>Players: </h3>
         <p>List of players will go here</p>
     <h3>Status: </h3>
-    <p><% if @campaign.full == false %>
-            Accepting new players! Send a join request if you're interested!
-        <% else %>
-            Not currently accepting new players.
-        <% end %>
-    </p>
+    <% if @campaign.full == false %>
+        <p>Accepting new players! Send a join request if you're interested!</p>
+        <button><%= link_to 'Join', campaign_signups_path(@campaign), method: :post %></button>
+    <% else %>
+        <p>Not currently accepting new players.</p>
+    <% end %>
 <% end %>

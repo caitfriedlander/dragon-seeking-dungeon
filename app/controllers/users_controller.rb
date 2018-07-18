@@ -8,6 +8,8 @@ class UsersController < ApplicationController
     end
 
     def show
+      @signups = Signup.all
+      @campaigns = Campaign.all
     end
   
     def new
@@ -23,7 +25,11 @@ class UsersController < ApplicationController
 
     def create
       @user = User.new(user_params)
-      @user.image.attach(params[:user][:image])
+      if params[:user][:image]
+        @user.image.attach(params[:user][:image])
+      else
+        @user.image.url = "/assests/images/wiz.png"
+      end
       @editions = Edition.all
       @roles = Role.all
       if @user.save
