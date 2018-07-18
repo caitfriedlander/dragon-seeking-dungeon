@@ -17,11 +17,11 @@
 <table class="table table-striped table-dark">
   <thead>
     <tr>
-      <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;Title&nbsp;&nbsp;&nbsp;&nbsp;</th>
-      <th scope="col">Description&nbsp;&nbsp;&nbsp;&nbsp;</th>
-      <th scope="col">Online&nbsp;&nbsp;&nbsp;&nbsp;</th>
-      <th scope="col">Edition&nbsp;&nbsp;&nbsp;&nbsp;</th>
-      <th scope="col">Size&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Online</th>
+      <th scope="col">Edition</th>
+      <th scope="col">Size</th>
       <th scope="col">Zipcode</th>
     </tr>
   </thead>
@@ -30,7 +30,7 @@
     <% @campaigns.each do |campaign| %>
         <% if campaign.full == false %>
             <tr>
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to campaign.name, campaign %></td>
+            <td><%= link_to campaign.name, campaign %></td>
             <td><%= campaign.description %></td>
             <td><%= campaign.online %></td>
             <td><%= campaign.edition.name %></td>

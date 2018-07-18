@@ -5,16 +5,23 @@ class CampaignsController < ApplicationController
 
     def index
       # search
+      # p '****'
+      # p params
+      # p '****'
       if params[:search]
         edition = params[:edition] == '' ? '%' : params[:edition]
         @campaigns = Campaign.joins(:edition).where("campaigns.name ILIKE ? OR campaigns.description ILIKE ?", "%#{params[:search]}%", "%#{params[:search]}%").where("editions.name LIKE '#{edition}'").order(created_at: :desc)
-        
+        if params[:online].present?
+          val = params[:online] == "true" ? true : false 
+          @campaigns = @campaigns.where(online: val)
+        end
       else
         @campaigns = Campaign.all
       end
     end
 
     def show
+      @signup = Signup.find_by(campaign_id: @campaign.id, user_id: current_user.id)
     end
 
     def new
