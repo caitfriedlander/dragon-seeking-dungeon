@@ -36,6 +36,8 @@ class CampaignsController < ApplicationController
       @campaign = Campaign.new(campaign_params)
       @campaign.user = current_user
       @campaign.full = false
+      p '*' * 100
+      p params
       if @campaign.save
         redirect_to @campaign
       else
@@ -44,14 +46,10 @@ class CampaignsController < ApplicationController
     end
 
     def update
-      respond_to do |format|
-        if @campaign.update(campaign_params)
-          format.html { redirect_to @campaign, notice: 'campaign was successfully updated.' }
-          format.json { render :show, status: :ok, location: @campaign }
-        else
-          format.html { render :edit }
-          format.json { render json: @campaign.errors, status: :unprocessable_entity }
-        end
+      if @campaign.update_attributes(campaign_params)
+        redirect_to campaign_path
+      else
+        render edit_path
       end
     end
 

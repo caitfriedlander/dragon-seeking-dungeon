@@ -11,25 +11,25 @@
   <% end %>
 
   <div class="field">
-    <h4><%= f.label 'Campaign Title: ' %></h4>
+    <h4><%= f.label :name, 'Campaign Title: ' %></h4>
     <p>Give your campaign a descriptive and fun title to help it stand out!</p>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <h4><%= f.label 'Online: ' %></h4>
+    <h4><%= f.label :online, 'Online: ' %></h4>
     <%= f.check_box :online %>  
   </div>
   <div class="field">
-    <h4><%= f.label 'Party Size: ' %></h4>
+    <h4><%= f.label :size, 'Party Size: ' %></h4>
     <%= f.number_field :size %>
   </div>
   <div class="field">
-    <h4><%= f.label 'Description: ' %></h4>
+    <h4><%= f.label :size, 'Description: ' %></h4>
     <p>Tell players a little about the campaign you're running. Are you using a pre-made module or writing your own? What days are you playing? Is this a weekly game or a oneshot? A good description will help make your campaign appealing to new players!</p>
     <%= f.text_area :description, cols: 60, rows: 9 %>
   </div>
   <div class="field">
-    <h4><%= f.label 'Edition: ' %></h4>
+    <h4><%= f.label :size, 'Edition: ' %></h4>
     <%= select(:campaign, "edition_id", Edition.all.collect {|e| [e.name, e.id]}, {include_blank: true}) %>
   </div>
   <br>

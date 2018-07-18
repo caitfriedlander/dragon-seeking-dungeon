@@ -1,20 +1,19 @@
 <h1>Users Search</h1>
 
-<table>
+<table class="table table-striped table-dark">
   <thead>
     <tr>
-      <th>&nbsp;&nbsp;&nbsp;&nbsp;Username&nbsp;&nbsp;&nbsp;&nbsp;</th>
-      <th>Zipcode&nbsp;&nbsp;&nbsp;&nbsp;</th>
-      <th>Roles&nbsp;&nbsp;&nbsp;&nbsp;</th>
-      <th>Editions</th>
-      <th colspan="3"></th>
+      <th scope="col">Username</th>
+      <th scope="col">Zipcode</th>
+      <th scope="col">Roles</th>
+      <th scope="col">Editions</th>
     </tr>
   </thead>
 
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to user.username, user %></td>
+        <td><%= link_to user.username, user %></td>
         <td><%= user.zipcode %></td>
         <td>Roles</td>
         <td>Edditions</td>

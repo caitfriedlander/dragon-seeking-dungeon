@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     def show
       @signups = Signup.all
       @campaigns = Campaign.all
+      @editions = Edition.all
     end
   
     def new

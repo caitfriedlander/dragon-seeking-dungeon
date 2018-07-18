@@ -5,7 +5,11 @@
         <div class="aboutme col-sm-6">
             <ul>
                 <li class="profilepic">
-                <%= image_tag @user.image %>
+                    <% if !@user.image %>
+                        <%= image_tag @user.image %>
+                    <% else %>
+                        <%= image_tag 'wiz.png' %>
+                    <% end %>
                 </li>
                 <li>Age: <%= @user.age %></li>
                 <li>Zipcode: <%= @user.zipcode %></li>
@@ -36,13 +40,16 @@
             <% @user.campaigns.each do |campaign| %>
                 <div>
                     <h5><%= link_to campaign.name, campaign %></h5>
-                    <p>Module - Eddition</p>
+                    <%= "Edition: #{campaign.edition.name} - #{campaign.online == true ? 'Online' : 'Offline'}" %>
+                    <br><br>
                 </div>
             <% end %>
-            <h4>My Joined Campaigns</h4>
+            <h4>Playing In</h4>
             <% @signups.each do |signup| %>
                 <div>
-                    <%= link_to @campaigns.find(signup.campaign_id).name, campaign_path(signup.campaign_id) %>
+                    <h5><%= link_to @campaigns.find(signup.campaign_id).name, campaign_path(signup.campaign_id) %></h5>
+                    <%= "Edition: #{@campaigns.find(signup.campaign_id).edition.name} - #{@campaigns.find(signup.campaign_id).online == true ? 'Online' : 'Offline'}" %>
+                    <br><br>
                 </div>
             <% end %>
         </div>
