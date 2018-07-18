@@ -42,7 +42,7 @@
     <% if @campaign.full == false %>
         <p>Accepting new players! Send a join request if you're interested!</p>
         <% if @signup %>
-            nope
+            <button><%= link_to 'Leave Campaign', campaign_signup_path(@campaign), method: :delete %></button>
         <% else %>
             <button><%= link_to 'Join', campaign_signups_path(@campaign), method: :post %></button>
         <% end %>

@@ -12,4 +12,14 @@ class SignupsController < ApplicationController
         @signup = Campaign.where(params[:user_id] = current_user)
     end
 
+    def destroy
+        @campaign = Campaign.find(params[:id])
+        @signup = Signup.where(campaign_id: @campaign.id).where(user_id: current_user)
+        p '*' * 100
+        p @signup
+        @signup.destroy_all
+
+        redirect_to campaigns_path
+    end
+
 end
