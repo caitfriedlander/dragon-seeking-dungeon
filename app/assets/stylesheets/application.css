@@ -19,6 +19,13 @@
      background-repeat: repeat;
  } */
 
+h1 {
+    font-family: modesto-expanded, serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 36px;
+}
+
  .table {
     background-color: rgba(173, 216, 230, .9);
  }
@@ -38,4 +45,9 @@
 
  .nav {
      width: 100%;
+ }
+
+ .badge {
+     display: inline-block;
+     margin-top: 12px;
  }

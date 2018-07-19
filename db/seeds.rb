@@ -10,6 +10,8 @@ Edition.destroy_all
 Role.destroy_all
 User.destroy_all
 Campaign.destroy_all
+# ActiveStorageAttachment.destroy_all
+# ActiveStorageBlob.destroy_all
 
 editions = Edition.create([
     {name: "1st"},
@@ -50,15 +52,15 @@ users = User.create([
 ])
 
 users.each do |user|
-    user.image.attach(io: File.open('/app/assets/images/wiz.png', filename: 'wiz.png'))
+    user.image.attach(io: File.open(File.join(Rails.root, '/app/assets/images/wiz.png')), filename: 'wiz.png')
 end
 
 campaigns = Campaign.create([
-    {name: "My Campaign", online: false, size: 4, description: "Blah blah blah orcs!", full: false, user: User.first, edition: Edition.first},
-    {name: "Curse of Strahd", online: false, size: 7, description: "It's always sunny in Barovia.", full: false, user: User.first, edition: Edition.second},
-    {name: "Tomb of Anihilation", online: false, size: 5, description: "No one's getting out alive.", full: false, user: User.first, edition: Edition.third},
-    {name: 'Hidden Shrine of Tamoachan', description: 'Explore the hidden shrine.', online: false, size: 5, full: false, user: User.fifth, edition: Edition.fourth},
-    {name: 'Sunless Citadel', description: 'Explore the burried Sunless Citadel.', online: false, size: 5, full: false, user: User.fifth, edition: Edition.last},
-    {name: "Homebrew - Tal'Dorei", description: "Let's go to Whitestone!", online: false, size: 5, full: false, user: User.second, edition: Edition.first},
-    {name: "Homebrew - Other", description: "This is basically the Adventure Zone but in space.", online: false, size: 5, full: false, user: User.second, edition: Edition.second}
+    {name: "My Campaign", online: false, size: 4, description: "Blah blah blah orcs!", user: User.first, edition: Edition.first},
+    {name: "Curse of Strahd", online: false, size: 7, description: "It's always sunny in Barovia.", user: User.first, edition: Edition.second},
+    {name: "Tomb of Anihilation", online: false, size: 5, description: "No one's getting out alive.", user: User.first, edition: Edition.third},
+    {name: 'Hidden Shrine of Tamoachan', description: 'Explore the hidden shrine.', online: false, size: 5, user: User.fifth, edition: Edition.fourth},
+    {name: 'Sunless Citadel', description: 'Explore the burried Sunless Citadel.', online: false, size: 5, user: User.fifth, edition: Edition.last},
+    {name: "Homebrew - Tal'Dorei", description: "Let's go to Whitestone!", online: false, size: 5, user: User.second, edition: Edition.first},
+    {name: "Homebrew - Other", description: "This is basically the Adventure Zone but in space.", online: false, size: 5, user: User.second, edition: Edition.second}
 ])

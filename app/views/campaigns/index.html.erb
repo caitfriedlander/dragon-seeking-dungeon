@@ -1,20 +1,23 @@
-<h1>Browse Campaigns</h1>
+<h1 class="justify-content-center">Browse Campaigns</h1>
 <br>
-<h5>Search By: </h5>
-<form class="searchbar">
+<form class="searchbar form-inline">
     <div class="form-row align-items-center">
-        <%= form_tag( campaigns_path, method: :get) do %>
-            <div class="searchgroup col-sm-3 my-1">
-                Keyword: <%= text_field_tag :search, params[:search], placeholder: "try orcs or vampires..." %>
+        <%= form_tag( campaigns_path, method: :get, class: "form-inline") do %>
+            <h5 class="mr-sm-2">Search By: </h5>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                <label class="mr-sm-2" for="inlineFormCustomSelect">Keyword:</label>
+                <%= text_field_tag :search, params[:search], class: "form-control mb-2 mr-sm-2 mb-sm-0", placeholder: "try orcs or vampires..." %>
             </div>
-            <div class="searchgroup col-sm-3 my-1">
-                Edition: <%= select(nil, :edition, Edition.all.collect {|e| [e.name, e.name]}, {include_blank: true}) %>
+            <div class="form-check mb-2 mr-sm-2 mb-sm-0">
+                <label class="mr-sm-2">Edition: </label>
+                <%= select(nil, :edition, Edition.all.collect {|e| [e.name, e.name]}, {include_blank: true}, class: "form-control") %>
             </div>
-            <div class="searchgroup col-sm-3 my-1">
-                Online: <%= select(nil, :online, ["true", "false"], {include_blank: true}) %>
+            <div class="form-check mb-2 mr-sm-2 mb-sm-0">
+                <label class="mr-sm-2">Online: </label>
+                <%= select(nil, :online, ["true", "false"], {include_blank: true}, class: "form-control") %>
             </div>
             <div class="searchgroup col-auto my-1">
-                <%= submit_tag "Search!" %>
+                <%= submit_tag "Search!", class: "btn btn-danger" %>
             </div>
         <% end %>
     </div>

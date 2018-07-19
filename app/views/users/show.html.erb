@@ -4,12 +4,12 @@
             <h2 class="d-flex justify-content-center"><%= @user.username %></h2>
             <br>
                 <div class="profilepic d-flex justify-content-center">
-                    <% if @user.image.service_url %>
-                        <%= image_tag @user.image.service_url %>
+                    <% unless @user.image.attachment.nil? %>
+                        <img src="<%= rails_blob_path(@user.image) %>">
                     <% else %>
                         <%= image_tag 'wiz.png' %>
                     <% end %>
-                </div>
+                </div>  
                 <br>
                 <h5>Bio: </h5>
                 <p><%= @user.bio %></p>
@@ -84,12 +84,14 @@
         <div class="col-sm-6">
             <h2><%= @user.username %></h2>
             <br>
-                <div class="profilepic d-flex justify-content-center">
-                    <%= image_tag 'wiz.png' %>
-                </div>
-                <br>
-                <h5>Bio: </h5>
-                <p><%= @user.bio %></p>
+            <% unless @user.image.attachment.nil? %>
+                <img src="<%= rails_blob_path(@user.image) %>">
+            <% else %>
+                <%= image_tag 'wiz.png' %>
+            <% end %>
+            <br>
+            <h5>Bio: </h5>
+            <p><%= @user.bio %></p>
             </div>
             <div class="col-sm-6" style="width: 18rem;">
                 <div class="card-header">
