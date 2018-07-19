@@ -8,7 +8,7 @@
                 
                 <li class="list-group-item">
                     <h5>DM:</h5>
-                    <p><%= @campaign.user.username %></p>
+                    <p><%= link_to @campaign.user.username, user_path(@campaign.user) %></p>
                 </li>
                 <li class="list-group-item"><h5>Campaign Description:</h5>
                     <p><%= @campaign.description %></p>
@@ -51,37 +51,48 @@
         </div>
     <% else %>
         <div class="card col-sm-12">
-            <div class="card-header">
+<div class="card-header">
                 <h1><%= @campaign.name %></h1>
             </div>
             <ul class="list-group list-group-flush">
                 
-                <li class="list-group-item">DM: <%= @campaign.user.username %></li>
-                <li class="list-group-item">Campaign Description:
+                <li class="list-group-item">
+                    <h5>DM:</h5>
+                    <p><%= link_to @campaign.user.username, user_path(@campaign.user) %></p>
+                </li>
+                <li class="list-group-item"><h5>Campaign Description:</h5>
                     <p><%= @campaign.description %></p>
                 </li>
                 <li class="list-group-item"> 
                     <% if @campaign.online == false %>
-                        Location: In Person
+                        <h5>Location:</h5> 
+                        <p>In Person</p>
                     <% else %>
-                        Location: Online
+                        <h5>Location:</h5> 
+                        <p>Online</p>
                     <% end %>
                 </li>
-                <li class="list-group-item">Party Size: <%= @campaign.size %></li>
-                <li class="list-group-item">Players: 
+                <li class="list-group-item">
+                    <h5>Party Size:</h5> 
+                    <p><%= @campaign.size %>
+                </li>
+                <li class="list-group-item">
+                    <h5>Players:</h5> 
                     <% @campaign.signups.each do |signup| %>
                         <% if signup.approved %>
                             <p><%= link_to signup.user.username, user_path(signup.user) %></p>
                         <% end %>
                     <% end %>
                 </li>
-        <h3>Status: </h3>
-        <% if !@campaign.full? %>
-            <p>Accepting new players! Send a join request if you're interested!</p>
-        <% else %>
-            <p>Not currently accepting new players.</p>
-        <% end %>
-        </ul>
+                <li class="list-group-item">
+                    <h5>Status:</h5>
+                    <% if !@campaign.full? %>
+                        <p>Accepting new players!</p>
+                    <% else %>
+                        <p>Not currently accepting new players.</p>
+                    <% end %>
+                </li>
+            </ul>    
         </div>
         <br>
         <div class="d-flex justify-content-around">
