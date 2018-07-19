@@ -13,6 +13,20 @@
  *= require_tree .
  *= require_self
  */
+
+.containter {
+    display: flex;
+}
+
+ body {
+     background-image: url("bg3.jpg");
+     background-repeat: repeat;
+ }
+
+ .table {
+    background-color: rgba(173, 216, 230, .9);
+ }
+
  li {
      list-style: none
  }
@@ -23,5 +37,9 @@
  }
 
  .jumbotron {
-     background-color: lightblue;
+     background-color: rgba(173, 216, 230, 1);
+ }
+
+ .nav {
+     width: 100%;
  }

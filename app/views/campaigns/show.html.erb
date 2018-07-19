@@ -10,11 +10,12 @@
                 <li class="list-group-item">Campaign Description:
                     <p><%= @campaign.description %></p>
                 </li>
-                <li class="list-group-item">Location: <% if @campaign.online == false %>
-                            In Person
-                        <% else %>
-                            Online
-                        <% end %>
+                <li class="list-group-item"> 
+                    <% if @campaign.online == false %>
+                        Location: In Person
+                    <% else %>
+                        Location: Online
+                    <% end %>
                 </li>
                 <li class="list-group-item">Party Size: <%= @campaign.size %></li>
                 <li class="list-group-item">Players: 
