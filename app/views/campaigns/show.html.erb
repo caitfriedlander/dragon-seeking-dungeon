@@ -17,7 +17,11 @@
                         <% end %>
                 </li>
                 <li class="list-group-item">Party Size: <%= @campaign.size %></li>
-                <li class="list-group-item">Players: List of players will go here</li>
+                <li class="list-group-item">Players: 
+                    <% @signups.each do |signup| %>
+                        <p><%= link_to @users.find(signup.user_id).username, user_path(signup.user_id) %></p>
+                    <% end %>
+                </li>
                 <li class="list-group-item">Status: 
                     <% if @campaign.full == false %>
                         Accepting new players!

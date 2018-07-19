@@ -17,6 +17,8 @@ class CampaignsController < ApplicationController
     end
 
     def show
+      @users = User.all
+      @signups = Signup.all
       @signup = Signup.find_by(campaign_id: @campaign.id, user_id: current_user.id)
     end
 

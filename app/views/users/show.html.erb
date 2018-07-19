@@ -26,7 +26,6 @@
                         <li class="list-group-item">Age: <%= @user.age %></li>
                         <li class="list-group-item">Zipcode: <%= @user.zipcode %></li>
                         <li class="list-group-item">Gender: <%= @user.gender %></li>
-                        <li class="list-group-item">Bio: <%= @user.bio %></li>
                         <li class="list-group-item">Favorite Editions:&nbsp; 
                             <% @user.editions.each do |edition| %>
                                 <% if edition != @user.editions.last %>
