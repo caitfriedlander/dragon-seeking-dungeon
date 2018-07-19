@@ -1,52 +1,54 @@
-<% if @campaign.user_id == current_user[:id] %>
-    <h1><%= @campaign.name %></h1>
-    <h3>DM: <%= @campaign.user.username %></h3>
-    <h3>Campaign Description: </h3>
-    <p><%= @campaign.description %></p>
-    <h3>Location: </h3>
-    <p><% if @campaign.online == false %>
-            In Person
-        <% else %>
-            Online
-        <% end %>
-    </p>
-    <h3>Party Size: </h3>
-    <p><%= @campaign.size %></p>
-    <h3>Players: </h3>
-        <p>List of players will go here</p>
-    <h3>Status: </h3>
-    <p><% if @campaign.full == false %>
-            Accepting new players!
-        <% else %>
-            Not currently accepting new players.
-        <% end %>
-    </p>
-    <button><%= link_to 'Edit', edit_campaign_path %></button>
-    <button><%= link_to 'Delete', campaign_path(@campaign), method: :delete, data: {confirm: "Are you sure? This action can't be undone!"} %></button>
-<% else %>
-    <h1><%= @campaign.name %></h1>
-    <h3>Campaign Description: </h3>
-    <p><%= @campaign.description %></p>
-    <h3>Location: </h3>
-    <p><% if @campaign.online == false %>
-            In Person
-        <% else %>
-            Online
-        <% end %>
-    </p>
-    <h3>Party Size: </h3>
-    <p><%= @campaign.size %></p>
-    <h3>Players: </h3>
-        <p>List of players will go here</p>
-    <h3>Status: </h3>
-    <% if @campaign.full == false %>
-        <p>Accepting new players! Send a join request if you're interested!</p>
-        <% if @signup %>
-            <button><%= link_to 'Leave Campaign', campaign_signup_path(@campaign), method: :delete %></button>
-        <% else %>
-            <button><%= link_to 'Join', campaign_signups_path(@campaign), method: :post %></button>
-        <% end %>
+<div class="jumbotron">
+    <% if @campaign.user_id == current_user[:id] %>
+        <h1><%= @campaign.name %></h1>
+        <h3>DM: <%= @campaign.user.username %></h3>
+        <h3>Campaign Description: </h3>
+        <p><%= @campaign.description %></p>
+        <h3>Location: </h3>
+        <p><% if @campaign.online == false %>
+                In Person
+            <% else %>
+                Online
+            <% end %>
+        </p>
+        <h3>Party Size: </h3>
+        <p><%= @campaign.size %></p>
+        <h3>Players: </h3>
+            <p>List of players will go here</p>
+        <h3>Status: </h3>
+        <p><% if @campaign.full == false %>
+                Accepting new players!
+            <% else %>
+                Not currently accepting new players.
+            <% end %>
+        </p>
+        <button><%= link_to 'Edit', edit_campaign_path %></button>
+        <button><%= link_to 'Delete', campaign_path(@campaign), method: :delete, data: {confirm: "Are you sure? This action can't be undone!"} %></button>
     <% else %>
-        <p>Not currently accepting new players.</p>
+        <h1><%= @campaign.name %></h1>
+        <h3>Campaign Description: </h3>
+        <p><%= @campaign.description %></p>
+        <h3>Location: </h3>
+        <p><% if @campaign.online == false %>
+                In Person
+            <% else %>
+                Online
+            <% end %>
+        </p>
+        <h3>Party Size: </h3>
+        <p><%= @campaign.size %></p>
+        <h3>Players: </h3>
+            <p>List of players will go here</p>
+        <h3>Status: </h3>
+        <% if @campaign.full == false %>
+            <p>Accepting new players! Send a join request if you're interested!</p>
+            <% if @signup %>
+                <button><%= link_to 'Leave Campaign', campaign_signup_path(@campaign), method: :delete %></button>
+            <% else %>
+                <button><%= link_to 'Join', campaign_signups_path(@campaign), method: :post %></button>
+            <% end %>
+        <% else %>
+            <p>Not currently accepting new players.</p>
+        <% end %>
     <% end %>
-<% end %>
+</div>

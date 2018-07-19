@@ -1,111 +1,73 @@
-<% if @user.id == current_user[:id] %>
-    <h1><%= @user.username %></h1>
-    <h4>About</h4>
-    <div class="row profilemod ">    
-        <div class="aboutme col-sm-6">
-            <ul>
-                <li class="profilepic">
+<% if @user.id == current_user[:id] %>  
+    <div class="aboutme jumbotron row">
+        <div class="col-sm-6">
+            <h2><%= @user.username %></h2>
+            <br>
+                <div class="profilepic">
                     <% if !@user.image %>
                         <%= image_tag @user.image %>
                     <% else %>
                         <%= image_tag 'wiz.png' %>
                     <% end %>
-                </li>
-                <li>Age: <%= @user.age %></li>
-                <li>Zipcode: <%= @user.zipcode %></li>
-                <li>Gender: <%= @user.gender %></li>
-                <li>Bio: <%= @user.bio %></li>
-                <li>Favorite Editions:&nbsp; 
-                    <% @user.editions.each do |edition| %>
-                        <% if edition != @user.editions.last %>
-                            <%= edition.name %>,&nbsp;
-                        <% else %>
-                            <%= edition.name %>
-                        <% end %>
-                    <% end %>
-                </li>
-                <li>Favorite Classes:&nbsp; 
-                    <% @user.roles.each do |role| %>
-                        <% if role != @user.roles.last %>
-                            <%= role.name %>,&nbsp;
-                        <% else %>
-                            <%= role.name %>
-                        <% end %>
-                    <% end %>
-                </li>
-            </ul>
-        </div>
-        <div class="profilemod mycampaigns col-span-6">
-            <h4>My Campaigns</h4>
-            <% @user.campaigns.each do |campaign| %>
-                <div>
-                    <h5><%= link_to campaign.name, campaign %></h5>
-                    <%= "Edition: #{campaign.edition.name} - #{campaign.online == true ? 'Online' : 'Offline'}" %>
-                    <br><br>
                 </div>
-            <% end %>
-            <h4>Playing In</h4>
-            <% @signups.each do |signup| %>
-                <div>
-                    <h5><%= link_to @campaigns.find(signup.campaign_id).name, campaign_path(signup.campaign_id) %></h5>
-                    <%= "Edition: #{@campaigns.find(signup.campaign_id).edition.name} - #{@campaigns.find(signup.campaign_id).online == true ? 'Online' : 'Offline'}" %>
-                    <br><br>
-                </div>
-            <% end %>
-        </div>
-    </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <button><%= link_to 'Edit', edit_user_path %></button>
+            <br>
+            <button><%= link_to 'Edit', edit_user_path %></button>
             </div>
-            <div class="col-sm-6">
-                <button><%= link_to 'New', new_campaign_path %></button>
+            <div class="col-sm-6" style="width: 18rem;">
+                <div class="card-header">
+                    About:
+                </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Age: <%= @user.age %></li>
+                        <li class="list-group-item">Zipcode: <%= @user.zipcode %></li>
+                        <li class="list-group-item">Gender: <%= @user.gender %></li>
+                        <li class="list-group-item">Bio: <%= @user.bio %></li>
+                        <li class="list-group-item">Favorite Editions:&nbsp; 
+                            <% @user.editions.each do |edition| %>
+                                <% if edition != @user.editions.last %>
+                                    <%= edition.name %>,&nbsp;
+                                <% else %>
+                                    <%= edition.name %>
+                                <% end %>
+                            <% end %>
+                        </li>
+                        <li class="list-group-item">Favorite Classes:&nbsp; 
+                            <% @user.roles.each do |role| %>
+                                <% if role != @user.roles.last %>
+                                    <%= role.name %>,&nbsp;
+                                <% else %>
+                                    <%= role.name %>
+                                <% end %>
+                            <% end %>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-<% else %>
-    <h1><%= @user.username %></h1>
-    <div class="row profilemod ">    
-        <div class="aboutme col-sm-6">
-            <ul>
-                <li class="profilepic">
-                <% if !@user.image %>
-                    <%= image_tag @user.image %>
-                <% else %>
-                    <%= image_tag 'wiz.png' %>
+    </div> 
+
+    <div class="mycampaigns row">
+        <div class="card col-sm-6" style="width: 18rem;">
+            <div class="card-header">
+                My Campaigns
+            </div>
+            <ul class="list-group list-group-flush">
+                <% @user.campaigns.each do |campaign| %>
+                    <li class="list-group-item"><%= link_to campaign.name, campaign %><%= ": Edition - #{campaign.edition.name} / #{campaign.online == true ? 'Online' : 'Offline'}" %></li>
                 <% end %>
-                </li>
-                <li>Age: <%= @user.age %></li>
-                <li>Zipcode: <%= @user.zipcode %></li>
-                <li>Gender: <%= @user.gender %></li>
-                <li>Bio: <%= @user.bio %></li>
-                <li>Favorite Editions:&nbsp; 
-                    <% @user.editions.each do |edition| %>
-                        <% if edition != @user.editions.last %>
-                            <%= edition.name %>,&nbsp;
-                        <% else %>
-                            <%= edition.name %>
-                        <% end %>
-                    <% end %>
-                </li>
-                <li>Favorite Classes:&nbsp; 
-                    <% @user.roles.each do |role| %>
-                        <% if role != @user.roles.last %>
-                            <%= role.name %>,&nbsp;
-                        <% else %>
-                            <%= role.name %>
-                        <% end %>
-                    <% end %>
-                </li>
+                    <li class="list-group-item"><button><%= link_to 'New', new_campaign_path %></button></li>
             </ul>
         </div>
-        <div class="profilemod mycampaigns col-span-6">
-            <h4>My Campaigns</h4>
-            <% @user.campaigns.each do |campaign| %>
-                <div>
-                    <h5><%= link_to campaign.name, campaign %></h5>
-                    <p>Module - Eddition</p>
-                </div>
-            <% end %>
+        <div class="card col-sm-6" style="width: 18rem;">
+            <div class="card-header">
+                Playing In
+            </div>
+            <ul class="list-group list-group-flush">
+                <% @signups.each do |signup| %>
+                    <li class="list-group-item"><%= link_to @campaigns.find(signup.campaign_id).name, campaign_path(signup.campaign_id) %><%= ": Edition - #{@campaigns.find(signup.campaign_id).edition.name} / #{@campaigns.find(signup.campaign_id).online == true ? 'Online' : 'Offline'}" %></li>
+                <% end %>
+            </ul>
         </div>
     </div>
+<% else %>
 <% end %>

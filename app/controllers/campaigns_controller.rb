@@ -4,7 +4,6 @@ class CampaignsController < ApplicationController
     before_action :authorize, except: [:index, :show]
 
     def index
-
       if params[:search]
         edition = params[:edition] == '' ? '%' : params[:edition]
         @campaigns = Campaign.joins(:edition).where("campaigns.name ILIKE ? OR campaigns.description ILIKE ?", "%#{params[:search]}%", "%#{params[:search]}%").where("editions.name LIKE '#{edition}'").order(created_at: :desc)

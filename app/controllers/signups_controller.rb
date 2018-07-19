@@ -15,6 +15,7 @@ class SignupsController < ApplicationController
             p '*' *100
             if (players == @campaign.size)
                 @campaign.full = true
+                @campaign.save
             end
             p '*' *100
             p @campaign.full

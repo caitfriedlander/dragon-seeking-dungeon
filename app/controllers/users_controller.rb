@@ -11,6 +11,10 @@ class UsersController < ApplicationController
       @signups = Signup.all
       @campaigns = Campaign.all
       @editions = Edition.all
+      p '**************************'
+      p params
+      p @user.image
+      p '**************************'
     end
   
     def new
@@ -42,13 +46,17 @@ class UsersController < ApplicationController
     end
   
     def update
-      current_user.user_editions.destroy_all
-      current_user.user_roles.destroy_all
-      params[:editions].each do |edition_id|
-        UserEdition.create(user: current_user, edition_id: edition_id)
+      if params[:editions]
+        current_user.user_editions.destroy_all
+        params[:editions].each do |edition_id|
+          UserEdition.create(user: current_user, edition_id: edition_id)
+        end
       end
-      params[:roles].each do |role_id|
-        UserRole.create(user: current_user, role_id: role_id)
+      if params[:roles]
+        current_user.user_roles.destroy_all
+        params[:roles].each do |role_id|
+          UserRole.create(user: current_user, role_id: role_id)
+        end
       end
 
       if params[:user][:image]
