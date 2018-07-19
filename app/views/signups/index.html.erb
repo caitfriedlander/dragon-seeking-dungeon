@@ -1,7 +1,6 @@
+<h1>Notifications</h1>
+<p>Approve or decline requests by players to join your campaigns.</p>
 <div class="jumbotron">
-    <h1>Notifications</h1>
-    <p>Approve or decline requests by players to join your campaigns.</p>
-</div>
     <% @campaigns.each do |campaign| %>
         <% campaign.signups.each do |signup| %>
             <% if !signup.approved %>
@@ -17,3 +16,4 @@
             <% end %>
         <% end %>
     <% end %>
+</div>

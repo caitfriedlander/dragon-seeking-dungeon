@@ -1,67 +1,71 @@
-<div class="jumbotron">
-  <%= form_with(model: user, local:true) do |f| %>
-  <% if @user.errors.any? %>
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-        <% for message in @user.errors.full_messages %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="row justify-content-center">
+  <div class="jumbotron col-sm-5">
+    <%= form_with(model: user, local:true) do |f| %>
+    <% if @user.errors.any? %>
+      <div class="error_messages">
+        <h2>Form is invalid</h2>
+        <ul>
+          <% for message in @user.errors.full_messages %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-  <div class="form-group">
-    <%= f.label :username, 'Username: ' %>
-    <%= f.text_field :username %>
-  </div>
-  <div class="form-group">
-    <%= f.label :email, 'Email: ' %>
-    <%= f.text_field :email %>
-  </div>
-  <div class="form-group">
-    <%= f.label :password, 'Password: ' %>
-    <%= f.password_field :password %>
-  </div>
-  <div class="form-group">
-    <%= f.label :password_confirmation, 'Confirm Password: ' %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="form-group">
-    <%= f.label :zipcode, 'Zipcode: ' %>
-    <%= f.number_field :zipcode %>
-  </div>
-  <div class="form-group">
-    <%= f.label :age, 'Age: ' %>
-    <%= f.number_field :age %>
-  </div>
-  <div class="form-group">
-    <%= f.label :gender, 'Gender: ' %>
-    <%= f.text_field :gender %>
-  </div>
-  <div class="form-group">
-    <%= f.label :bio, 'About: ' %>
-    <%= f.text_area :bio, cols: 60, rows: 9 %>
-  </div>
-  <div class="form-group">
-    <%= f.label :image, 'Profile Picture: ' %><br>
-    <p>(We resize our images so a square is recomended!)</p>
-    <%= f.file_field :image %>
-  </div>
-  <div class="form-group checkboxes">
-    <%= 'Favorite Editions: ' %> 
-    <br>
-    <% @editions.each do |edition| %>
-      <%= edition.name %>: <%= check_box_tag 'editions[]', edition.id, (current_user ? current_user.editions.exists?(edition.id) : false) %> 
+    <div class="form-group">
+      <h4><%= f.label :username, 'Username: ' %></h4>
+      <%= f.text_field :username, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <h4><%= f.label :email, 'Email: ' %></h4>
+      <%= f.text_field :email, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <h4><%= f.label :password, 'Password: ' %></h4>
+      <%= f.password_field :password, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <h4><%= f.label :password_confirmation, 'Confirm Password: ' %></h4>
+      <%= f.password_field :password_confirmation, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <h4><%= f.label :zipcode, 'Zipcode: ' %></h4>
+      <%= f.number_field :zipcode, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <h4><%= f.label :age, 'Age: ' %></h4>
+      <%= f.number_field :age, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <h4><%= f.label :gender, 'Gender: ' %></h4>
+      <%= f.text_field :gender, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <h4><%= f.label :bio, 'About: ' %></h4>
+      <%= f.text_area :bio, rows: 3, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <h4><%= f.label :image, 'Profile Picture: ' %><br></h4>
+      <small class="form-text">(We resize our images so a square is recomended!)</small>
+      <%= f.file_field :image %>
+    </div>
+    <div class="form-group checkboxes">
+      <h4>Favorite Editions: </h4>
+      <% @editions.each do |edition| %>
+        <label class="form-check-label">
+          <%= "#{edition.name}: " %><%= check_box_tag 'editions[]', edition.id, (current_user ? current_user.editions.exists?(edition.id) : false) %>
+        </label>
+      <% end %>
+    </div>
+    <div class="form-group checkboxes">
+      <h4><%= f.label :role, 'Favorite Classes: ' %></h4>
+      <% @roles.each do |role| %>
+        <%= role.name %>: <%= check_box_tag 'roles[]', role.id, (current_user ? current_user.roles.exists?(role.id) : false) %>
+      <% end %>
+    </div>
+    <div class="actions justify-content-center">
+      <%= f.submit 'Submit', class: "btn btn-danger" %> 
+      <%= link_to 'Cancel', @user, class: "btn btn-danger" %>
+    </div>
     <% end %>
   </div>
-  <div class="form-group checkboxes">
-    <%= f.label :role, 'Favorite Classes: ' %>
-    <br>
-    <% @roles.each do |role| %>
-      <%= role.name %>: <%= check_box_tag 'roles[]', role.id, (current_user ? current_user.roles.exists?(role.id) : false) %>
-    <% end %>
-  </div>
-  <div class="actions"><%= f.submit %></div>
-  <% end %>
 </div>

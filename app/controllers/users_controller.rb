@@ -11,10 +11,6 @@ class UsersController < ApplicationController
       @signups = Signup.all.where(user_id: @user.id)
       @campaigns = Campaign.all
       @editions = Edition.all
-      p '**************************'
-      p params
-      p @user.image
-      p '**************************'
     end
   
     def new
