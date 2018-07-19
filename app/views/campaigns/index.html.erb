@@ -34,7 +34,7 @@
 
   <tbody>
     <% @campaigns.each do |campaign| %>
-        <% if campaign.full == false %>
+        <% if !campaign.full? %>
             <tr>
             <td><%= link_to campaign.name, campaign %></td>
             <td>

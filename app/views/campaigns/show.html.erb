@@ -1,5 +1,5 @@
 <div class="jumbotron">
-    <% if @campaign.user_id == current_user[:id] %>
+    <% if @campaign.user == current_user %>
         <div class="card col-sm-12">
             <div class="card-header">
                 <h1><%= @campaign.name %></h1>
@@ -28,15 +28,15 @@
                 </li>
                 <li class="list-group-item">
                     <h5>Players:</h5> 
-                    <% @signups.each do |signup| %>
+                    <% @campaign.signups.each do |signup| %>
                         <% if signup.approved %>
-                            <p><%= link_to @users.find(signup.user_id).username, user_path(signup.user_id) %></p>
+                            <p><%= link_to signup.user.username, user_path(signup.user) %></p>
                         <% end %>
                     <% end %>
                 </li>
                 <li class="list-group-item">
                     <h5>Status:</h5>
-                    <% if @campaign.full == false %>
+                    <% if !@campaign.full? %>
                         <p>Accepting new players!</p>
                     <% else %>
                         <p>Not currently accepting new players.</p>
@@ -69,14 +69,14 @@
                 </li>
                 <li class="list-group-item">Party Size: <%= @campaign.size %></li>
                 <li class="list-group-item">Players: 
-                    <% @signups.each do |signup| %>
+                    <% @campaign.signups.each do |signup| %>
                         <% if signup.approved %>
-                            <p><%= link_to @users.find(signup.user_id).username, user_path(signup.user_id) %></p>
+                            <p><%= link_to signup.user.username, user_path(signup.user) %></p>
                         <% end %>
                     <% end %>
                 </li>
         <h3>Status: </h3>
-        <% if @campaign.full == false %>
+        <% if !@campaign.full? %>
             <p>Accepting new players! Send a join request if you're interested!</p>
         <% else %>
             <p>Not currently accepting new players.</p>
@@ -85,9 +85,10 @@
         </div>
         <br>
         <div class="d-flex justify-content-around">
-            <% if @signup %>
-                <% if @signup.approved %>
-                    <%= link_to 'Leave Campaign', signup_path(@campaign), method: :delete, class: 'btn btn-success' %>
+            <% signup = @campaign.signups.find_by(user: current_user) %>
+            <% if signup %>
+                <% if signup.approved %>
+                    <%= link_to 'Leave Campaign', signup_path(signup), method: :delete, class: 'btn btn-success' %>
                 <% else %>
                     <h4>Join request sent!</h4>
                 <% end %>

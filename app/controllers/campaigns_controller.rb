@@ -17,9 +17,7 @@ class CampaignsController < ApplicationController
     end
 
     def show
-      @users = User.all
-      @signups = Signup.all
-      @signup = Signup.find_by(campaign_id: @campaign.id, user_id: current_user.id)
+      @campaign = Campaign.find(params[:id])
     end
 
     def new
@@ -33,9 +31,6 @@ class CampaignsController < ApplicationController
     def create
       @campaign = Campaign.new(campaign_params)
       @campaign.user = current_user
-      @campaign.full = false
-      p '*' * 100
-      p params
       if @campaign.save
         redirect_to @campaign
       else

@@ -14,10 +14,6 @@
  *= require_self
  */
 
-.containter {
-    display: flex;
-}
-
  /* body {
      background-image: url("bg3.jpg");
      background-repeat: repeat;

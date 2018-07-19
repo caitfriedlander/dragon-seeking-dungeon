@@ -9,4 +9,8 @@ class Campaign < ApplicationRecord
 
     has_many :signups, dependent: :destroy
     has_many :players, through: :signups
+
+    def full?
+        self.size <= self.signups.where(approved: true).count
+    end
 end
