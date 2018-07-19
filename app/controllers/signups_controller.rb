@@ -1,12 +1,11 @@
 class SignupsController < ApplicationController
 
     def index
-        @campaigns = Campaign.where(user_id: current_user)
-        @signups = Signup.where(campaign_id: @campaigns)
-        p '**************************'
-        p params
-        p @campaigns
-        p '**************************'
+        @campaigns = current_user.campaigns
+    end
+
+    def show
+        @signup = Signup.find(params[:id])
     end
 
     def create
@@ -33,8 +32,11 @@ class SignupsController < ApplicationController
         redirect_to campaign_path(params[:campaign_id])
     end
 
-    def show
+    def update
         @signup = Signup.find(params[:id])
+        @signup.approved = true
+        @signup.save
+        redirect_to notifications_path
     end
 
     def destroy

@@ -18,10 +18,10 @@
     display: flex;
 }
 
- body {
+ /* body {
      background-image: url("bg3.jpg");
      background-repeat: repeat;
- }
+ } */
 
  .table {
     background-color: rgba(173, 216, 230, .9);

@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     end
 
     def show
-      @signups = Signup.all
+      @signups = Signup.all.where(user_id: @user.id)
       @campaigns = Campaign.all
       @editions = Edition.all
       p '**************************'
