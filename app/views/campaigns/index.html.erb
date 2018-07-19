@@ -1,22 +1,26 @@
 <h1>Browse Campaigns</h1>
 <br>
 <h5>Search By: </h5>
-<form class="searchbar form-inline">
-    <%= form_tag( campaigns_path, method: :get) do %>
-        <div class="searchgroup">
-            Keyword: <%= text_field_tag :search, params[:search], placeholder: "Try: orcs or vampires!" %>
-        </div>
-        <div class="searchgroup">
-            Edition: <%= select(nil, :edition, Edition.all.collect {|e| [e.name, e.name]}, {include_blank: true}) %>
-        </div>
-        <div class="searchgroup">
-            Online: <%= select(nil, :online, ["true", "false"], {include_blank: true}) %>
-        </div>
-        <%= submit_tag "Search!" %>
-    <% end %>
+<form class="searchbar">
+    <div class="form-row align-items-center">
+        <%= form_tag( campaigns_path, method: :get) do %>
+            <div class="searchgroup col-sm-3 my-1">
+                Keyword: <%= text_field_tag :search, params[:search], placeholder: "try orcs or vampires..." %>
+            </div>
+            <div class="searchgroup col-sm-3 my-1">
+                Edition: <%= select(nil, :edition, Edition.all.collect {|e| [e.name, e.name]}, {include_blank: true}) %>
+            </div>
+            <div class="searchgroup col-sm-3 my-1">
+                Online: <%= select(nil, :online, ["true", "false"], {include_blank: true}) %>
+            </div>
+            <div class="searchgroup col-auto my-1">
+                <%= submit_tag "Search!" %>
+            </div>
+        <% end %>
+    </div>
 </form>
 <br>
-<table class="table table-striped table-dark">
+<table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">Title</th>

@@ -1,29 +1,37 @@
 <div class="jumbotron">
     <% if @campaign.user_id == current_user[:id] %>
-        <h1><%= @campaign.name %></h1>
-        <h3>DM: <%= @campaign.user.username %></h3>
-        <h3>Campaign Description: </h3>
-        <p><%= @campaign.description %></p>
-        <h3>Location: </h3>
-        <p><% if @campaign.online == false %>
-                In Person
-            <% else %>
-                Online
-            <% end %>
-        </p>
-        <h3>Party Size: </h3>
-        <p><%= @campaign.size %></p>
-        <h3>Players: </h3>
-            <p>List of players will go here</p>
-        <h3>Status: </h3>
-        <p><% if @campaign.full == false %>
-                Accepting new players!
-            <% else %>
-                Not currently accepting new players.
-            <% end %>
-        </p>
-        <button><%= link_to 'Edit', edit_campaign_path %></button>
-        <button><%= link_to 'Delete', campaign_path(@campaign), method: :delete, data: {confirm: "Are you sure? This action can't be undone!"} %></button>
+        <div class="card col-sm-12">
+            <div class="card-header">
+                <h1><%= @campaign.name %></h1>
+            </div>
+            <ul class="list-group list-group-flush">
+                
+                <li class="list-group-item">DM: <%= @campaign.user.username %></li>
+                <li class="list-group-item">Campaign Description:
+                    <p><%= @campaign.description %></p>
+                </li>
+                <li class="list-group-item">Location: <% if @campaign.online == false %>
+                            In Person
+                        <% else %>
+                            Online
+                        <% end %>
+                </li>
+                <li class="list-group-item">Party Size: <%= @campaign.size %></li>
+                <li class="list-group-item">Players: List of players will go here</li>
+                <li class="list-group-item">Status: 
+                    <% if @campaign.full == false %>
+                        Accepting new players!
+                    <% else %>
+                        Not currently accepting new players.
+                    <% end %>
+                </li>
+            </ul>    
+        </div>
+        <br>
+        <div class="d-flex justify-content-around">
+            <button><%= link_to 'Edit', edit_campaign_path %></button>
+            <button><%= link_to 'Delete', campaign_path(@campaign), method: :delete, data: {confirm: "Are you sure? This action can't be undone!"} %></button>
+        </div>
     <% else %>
         <h1><%= @campaign.name %></h1>
         <h3>Campaign Description: </h3>

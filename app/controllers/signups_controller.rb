@@ -1,5 +1,14 @@
 class SignupsController < ApplicationController
 
+    def index
+        @campaigns = Campaign.where(user_id: current_user)
+        @signups = Signup.where(campaign_id: @campaigns)
+        p '**************************'
+        p params
+        p @campaigns
+        p '**************************'
+    end
+
     def create
         @signup = Signup.new
         @campaign = Campaign.find(params[:campaign_id])
@@ -24,8 +33,8 @@ class SignupsController < ApplicationController
         redirect_to campaign_path(params[:campaign_id])
     end
 
-    def index
-        @signup = Campaign.where(params[:user_id] = current_user)
+    def show
+        @signup = Signup.find(params[:id])
     end
 
     def destroy
