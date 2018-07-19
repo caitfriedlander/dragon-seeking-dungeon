@@ -86,7 +86,11 @@
         <br>
         <div class="d-flex justify-content-around">
             <% if @signup %>
-                <%= link_to 'Leave Campaign', signup_path(@campaign), method: :delete, class: 'btn btn-success' %>
+                <% if @signup.approved %>
+                    <%= link_to 'Leave Campaign', signup_path(@campaign), method: :delete, class: 'btn btn-success' %>
+                <% else %>
+                    <h4>Join request sent!</h4>
+                <% end %>
             <% else %>
                 <%= link_to 'Join', campaign_signups_path(@campaign), method: :post, class: 'btn btn-success' %>
             <% end %>

@@ -49,6 +49,10 @@ users = User.create([
     {email: "ex8@email.com", username: "name8", age: 88, gender: "F", zipcode: 80000, active: true, password: "password", password_confirmation: "password", bio: "I love TTRPGS!"}
 ])
 
+users.each do |user|
+    user.image.attach(io: File.open('/app/assets/images/wiz.png', filename: 'wiz.png'))
+end
+
 campaigns = Campaign.create([
     {name: "My Campaign", online: false, size: 4, description: "Blah blah blah orcs!", full: false, user: User.first, edition: Edition.first},
     {name: "Curse of Strahd", online: false, size: 7, description: "It's always sunny in Barovia.", full: false, user: User.first, edition: Edition.second},
