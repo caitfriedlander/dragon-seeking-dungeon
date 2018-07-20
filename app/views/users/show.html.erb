@@ -2,7 +2,7 @@
     <% if @user.id == current_user[:id] %>  
         <div class="aboutme jumbotron row justify-content-center">
             <div class="col-sm-6">
-                <h2 class="d-flex justify-content-center"><%= @user.username %></h2>
+                <h2 class="d-flex justify-content-center text-danger"><%= @user.username %></h2>
                 <br>
                     <div class="profilepic d-flex justify-content-center">
                         <% unless @user.image.attachment.nil? %>
@@ -12,8 +12,10 @@
                         <% end %>
                     </div>  
                     <br>
-                    <h5>Bio: </h5>
-                    <p><%= @user.bio %></p>
+
+                        <h5 class="bio text-danger d-flex justify-content-left">Bio:</h5>
+                        <p class="bio d-flex justify-content-left"><%= @user.bio %></p>
+
                 <br>
                 <div class="d-flex justify-content-center">
                     <%= link_to 'Edit', edit_user_path, class: "btn btn-danger" %>
@@ -52,50 +54,59 @@
         </div> 
 
         <div class="mycampaigns jumbotron row d-flex justify-content-around col-sm-10">
-            <div class="card col-sm-5">
+            <div class="card col-sm-5" style="width: 18rem;">
                 <div class="card-header bg-danger">
                     My Campaigns
                 </div>
-                <ul class="list-group list-group-flush">
-                    <% @user.campaigns.each do |campaign| %>
-                        <li class="list-group-item"><%= link_to campaign.name, campaign %><%= ": Edition - #{campaign.edition.name} / #{campaign.online == true ? 'Online' : 'Offline'}" %></li>
-                    <% end %>
-                    <div class="d-flex justify-content-center">
-                        <li class="list-group-item"><button><%= link_to 'New', new_campaign_path %></button></li>
-                    </div>
-                </ul>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <% @user.campaigns.each do |campaign| %>
+                            <li class="list-group-item"><%= link_to campaign.name, campaign, class:"text-danger"  %><%= ": Edition - #{campaign.edition.name} / #{campaign.online == true ? 'Online' : 'Offline'}" %></li>
+                        <% end %>
+                        <div class="d-flex justify-content-center">
+                            <%= link_to 'New', new_campaign_path, class:"btn btn-danger list-btn" %>
+                        </div>
+                    </ul>
+                </div>
             </div>
-            <div class="card col-sm-5">
+            <div class="card col-sm-5" style="width: 18rem;">
                 <div class="card-header bg-danger">
                     Playing In
                 </div>
-                <ul class="list-group list-group-flush">
-                    <% @signups.each do |signup| %>
-                        <% if signup.approved %>
-                            <li class="list-group-item"><%= link_to @campaigns.find(signup.campaign_id).name, campaign_path(signup.campaign_id) %><%= ": Edition - #{@campaigns.find(signup.campaign_id).edition.name} / #{@campaigns.find(signup.campaign_id).online == true ? 'Online' : 'Offline'}" %></li>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <% @signups.each do |signup| %>
+                            <% if signup.approved %>
+                                <li class="list-group-item"><%= link_to @campaigns.find(signup.campaign_id).name, campaign_path(signup.campaign_id), class:"text-danger" %><%= ": Edition - #{@campaigns.find(signup.campaign_id).edition.name} / #{@campaigns.find(signup.campaign_id).online == true ? 'Online' : 'Offline'}" %></li>
+                            <% end %>
                         <% end %>
-                    <% end %>
-                </ul>
+                        <li class="list-group-item"></li>
+                    </ul>
+                </div>
             </div>
         </div>
-
     <% else %>
-        <div class="aboutme jumbotron row">
+       <div class="aboutme jumbotron row justify-content-center">
             <div class="col-sm-6">
-                <h2><%= @user.username %></h2>
+                <h2 class="d-flex justify-content-center text-danger"><%= @user.username %></h2>
                 <br>
-                <% unless @user.image.attachment.nil? %>
-                    <img src="<%= rails_blob_path(@user.image) %>">
-                <% else %>
-                    <%= image_tag 'wiz.png' %>
-                <% end %>
+                    <div class="profilepic d-flex justify-content-center">
+                        <% unless @user.image.attachment.nil? %>
+                            <img src="<%= rails_blob_path(@user.image) %>">
+                        <% else %>
+                            <%= image_tag 'wiz.png' %>
+                        <% end %>
+                    </div>  
+                    <br>
+
+                        <h5 class="bio text-danger d-flex justify-content-left">Bio:</h5>
+                        <p class="bio d-flex justify-content-left"><%= @user.bio %></p>
+
                 <br>
-                <h5>Bio: </h5>
-                <p><%= @user.bio %></p>
-                </div>
+            </div>
                 <div class="col-sm-6" style="width: 18rem;">
-                    <div class="card-header">
-                        About:
+                    <div class="card-header bg-danger">
+                        About <%= @user.username %>:
                     </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">Age: <%= @user.age %></li>
@@ -125,26 +136,33 @@
             </div>
         </div> 
 
-        <div class="mycampaigns row">
-            <div class="card col-sm-6" style="width: 18rem;">
-                <div class="card-header">
-                    <%= @user.username %>'s Campaigns
+        <div class="mycampaigns jumbotron row d-flex justify-content-around col-sm-10">
+            <div class="card col-sm-5" style="width: 18rem;">
+                <div class="card-header bg-danger">
+                    My Campaigns
                 </div>
-                <ul class="list-group list-group-flush">
-                    <% @user.campaigns.each do |campaign| %>
-                        <li class="list-group-item"><%= link_to campaign.name, campaign %><%= ": Edition - #{campaign.edition.name} / #{campaign.online == true ? 'Online' : 'Offline'}" %></li>
-                    <% end %>
-                </ul>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <% @user.campaigns.each do |campaign| %>
+                            <li class="list-group-item"><%= link_to campaign.name, campaign, class:"text-danger"  %><%= ": Edition - #{campaign.edition.name} / #{campaign.online == true ? 'Online' : 'Offline'}" %></li>
+                        <% end %>
+                    </ul>
+                </div>
             </div>
-            <div class="card col-sm-6" style="width: 18rem;">
-                <div class="card-header">
+            <div class="card col-sm-5" style="width: 18rem;">
+                <div class="card-header bg-danger">
                     Playing In
                 </div>
-                <ul class="list-group list-group-flush">
-                    <% @signups.each do |signup| %>
-                        <li class="list-group-item"><%= link_to @campaigns.find(signup.campaign_id).name, campaign_path(signup.campaign_id) %><%= ": Edition - #{@campaigns.find(signup.campaign_id).edition.name} / #{@campaigns.find(signup.campaign_id).online == true ? 'Online' : 'Offline'}" %></li>
-                    <% end %>
-                </ul>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <% @signups.each do |signup| %>
+                            <% if signup.approved %>
+                                <li class="list-group-item"><%= link_to @campaigns.find(signup.campaign_id).name, campaign_path(signup.campaign_id), class:"text-danger" %><%= ": Edition - #{@campaigns.find(signup.campaign_id).edition.name} / #{@campaigns.find(signup.campaign_id).online == true ? 'Online' : 'Offline'}" %></li>
+                            <% end %>
+                        <% end %>
+                        <li class="list-group-item"></li>
+                    </ul>
+                </div>
             </div>
         </div>
     <% end %>

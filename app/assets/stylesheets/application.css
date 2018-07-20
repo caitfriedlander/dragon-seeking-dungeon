@@ -19,15 +19,14 @@
      background-repeat: repeat;
  } */
 
-h1 {
-    font-family: modesto-expanded, serif;
-    font-style: normal;
-    font-weight: 900;
-    font-size: 36px;
-}
+ /* Global */
 
-h2 {
-    color: red;
+h1 {
+    /* font-family: modesto-expanded, serif; */
+    /* font-style: normal;
+    font-weight: 900; */
+    font-size: 36px;
+    color: #dc3545;
 }
 
 td {
@@ -37,45 +36,116 @@ td {
  }
 
 li {
-     list-style: none
- }
-
-.profilepic > img {
-     width: 150px;
-     height: 150px;
- }
+    list-style: none
+}
 
 .jumbotron {
-     background-color: rgba(0, 0, 0, .8);
- }
+    background-color: rgba(0, 0, 0, .8);
+}
+
+.mat-card-header-text {
+    width: 100%
+}
+
+/* Navigation */
 
 .nav {
-     width: 100%;
- }
+    width: 100%;
+}
 
 .badge {
-     display: inline-block;
-     margin-top: 12px;
- }
+    display: inline-block;
+    margin-top: 12px;
+}
 
- navbar {
-     width: 100%;
- }
+navbar {
+    width: 100%;
+}
 
- .aboutme {
-     width: 80%;
- }
+/* Home */
 
- .mycampaigns {
+.landing-image {
+    width: 150px;
+    height: 160px;
+}
+
+/* Forms */
+
+h4 > label {
+    color: #dc3545;
+}
+
+form > div > h4 {
+    color: #dc3545;
+}
+
+.form-check-label {
+    color: white;
+}
+
+.checkboxes > span {
+    color: white;
+}
+
+/* User Page */
+
+.profilepic > img {
+    width: 150px;
+    height: 150px;
+}
+
+.aboutme {
+    width: 80%;
+}
+
+.mycampaigns {
     margin-left: 10%;
     width: 80%;
- }
+}
 
- .searchheader {
+.card-header {
+    color: white;
+}
+
+.bio {
+    color: white;
+}
+
+.bio > h5 {
+    color: #dc3545;
+}
+
+.card-header {
+    width: 100%;
+    position: relative;
+}
+
+.list-btn {
+    margin: 10px 0 -10px 0;
+}
+
+/* Campaign Show */
+.camptitle {
+    color: white;
+}
+
+.camp > h5 {
+    color: #dc3545;
+}
+
+.camp > a {
+    color: #dc3545;
+}
+
+/* Campaign Index */
+
+.searchheader {
     display: inline-block;
     margin-top: 8px;
- }
+}
 
- a {
-     color: red;
- }
+/* Notifications Page */
+
+.notif > h5 > a, .notif > p > a {
+    color: #dc3545;
+}

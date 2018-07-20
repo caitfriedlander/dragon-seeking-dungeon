@@ -1,19 +1,19 @@
-<h1>Notifications</h1>
-<p>Approve or decline requests by players to join your campaigns.</p>
 <div class="jumbotron">
-    <% @campaigns.each do |campaign| %>
-        <% campaign.signups.each do |signup| %>
-            <% if !signup.approved %>
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <p><%= campaign.name %></p>
-                        <p><%= signup.user.username %></p>
-                        <p><%= signup.created_at %></p>
-                        <%= link_to 'Approve', signup_path(signup), method: :patch, class: 'btn btn-success' %>
-                        <%= link_to 'Decline', signup_path(signup), method: :delete, class: 'btn btn-warning' %>
-                    </div>
+<h1>Notifications</h1>
+<p class="text-light">Approve or decline requests by players to join your campaigns.</p>
+</div>
+<% @campaigns.each do |campaign| %>
+    <% campaign.signups.each do |signup| %>
+        <% if !signup.approved %>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body notif">
+                    <h5><%= link_to signup.user.username, user_path(signup.user) %></h5>
+                    <p><%= link_to campaign.name, campaign_path(signup.campaign) %></p>
+                    <p><%= signup.created_at %></p>
+                    <%= link_to 'Approve', signup_path(signup), method: :patch, class: 'btn btn-danger' %>
+                    <%= link_to 'Decline', signup_path(signup), method: :delete, class: 'btn btn-dark' %>
                 </div>
-            <% end %>
+            </div>
         <% end %>
     <% end %>
-</div>
+<% end %>

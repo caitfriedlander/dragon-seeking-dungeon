@@ -1,111 +1,67 @@
-<div class="jumbotron">
-    <% if @campaign.user == current_user %>
-        <div class="card col-sm-12">
-            <div class="card-header">
-                <h1><%= @campaign.name %></h1>
-            </div>
-            <ul class="list-group list-group-flush">
-                
-                <li class="list-group-item">
-                    <h5>DM:</h5>
-                    <p><%= link_to @campaign.user.username, user_path(@campaign.user) %></p>
-                </li>
-                <li class="list-group-item"><h5>Campaign Description:</h5>
-                    <p><%= @campaign.description %></p>
-                </li>
-                <li class="list-group-item"> 
-                    <% if @campaign.online == false %>
-                        <h5>Location:</h5> 
-                        <p>In Person</p>
-                    <% else %>
-                        <h5>Location:</h5> 
-                        <p>Online</p>
-                    <% end %>
-                </li>
-                <li class="list-group-item">
-                    <h5>Party Size:</h5> 
-                    <p><%= @campaign.size %>
-                </li>
-                <li class="list-group-item">
-                    <h5>Players:</h5> 
-                    <% @campaign.signups.each do |signup| %>
-                        <% if signup.approved %>
-                            <p><%= link_to signup.user.username, user_path(signup.user) %></p>
+<div class="d-flex justify-content-center">
+    <div class="jumbotron col-sm-6">
+            <div class="col-sm-12">
+                <div class="card-header bg-danger">
+                    <h1 class="text-light d-flex justify-content-center"><%= @campaign.name %></h1>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item camp">
+                        <h5>DM:</h5>
+                        <p><%= link_to @campaign.user.username, user_path(@campaign.user), class:"text-secondary" %></p>
+                    </li>
+                    <li class="list-group-item camp"><h5>Campaign Description:</h5>
+                        <p><%= @campaign.description %></p>
+                    </li>
+                    <li class="list-group-item camp"> 
+                        <% if @campaign.online == false %>
+                            <h5>Location:</h5> 
+                            <p>In Person</p>
+                        <% else %>
+                            <h5>Location:</h5> 
+                            <p>Online</p>
                         <% end %>
-                    <% end %>
-                </li>
-                <li class="list-group-item">
-                    <h5>Status:</h5>
-                    <% if !@campaign.full? %>
-                        <p>Accepting new players!</p>
-                    <% else %>
-                        <p>Not currently accepting new players.</p>
-                    <% end %>
-                </li>
-            </ul>    
-        </div>
-        <br>
-        <div class="d-flex justify-content-around">
-            <%= link_to 'Edit', edit_campaign_path, class: 'btn btn-success' %>
-            <%= link_to 'Delete', campaign_path(@campaign), method: :delete, data: {confirm: "Are you sure? This action can't be undone!"}, class: 'btn btn-success' %>
-        </div>
-    <% else %>
-        <div class="card col-sm-12">
-<div class="card-header">
-                <h1><%= @campaign.name %></h1>
-            </div>
-            <ul class="list-group list-group-flush">
-                
-                <li class="list-group-item">
-                    <h5>DM:</h5>
-                    <p><%= link_to @campaign.user.username, user_path(@campaign.user) %></p>
-                </li>
-                <li class="list-group-item"><h5>Campaign Description:</h5>
-                    <p><%= @campaign.description %></p>
-                </li>
-                <li class="list-group-item"> 
-                    <% if @campaign.online == false %>
-                        <h5>Location:</h5> 
-                        <p>In Person</p>
-                    <% else %>
-                        <h5>Location:</h5> 
-                        <p>Online</p>
-                    <% end %>
-                </li>
-                <li class="list-group-item">
-                    <h5>Party Size:</h5> 
-                    <p><%= @campaign.size %>
-                </li>
-                <li class="list-group-item">
-                    <h5>Players:</h5> 
-                    <% @campaign.signups.each do |signup| %>
-                        <% if signup.approved %>
-                            <p><%= link_to signup.user.username, user_path(signup.user) %></p>
+                    </li>
+                    <li class="list-group-item camp">
+                        <h5>Party Size:</h5> 
+                        <p><%= @campaign.size %>
+                    </li>
+                    <li class="list-group-item camp">
+                        <h5>Players:</h5> 
+                        <% @campaign.signups.each do |signup| %>
+                            <% if signup.approved %>
+                                <p><%= link_to signup.user.username, user_path(signup.user), class:"text-secondary" %></p>
+                            <% end %>
                         <% end %>
-                    <% end %>
-                </li>
-                <li class="list-group-item">
-                    <h5>Status:</h5>
-                    <% if !@campaign.full? %>
-                        <p>Accepting new players!</p>
+                    </li>
+                    <li class="list-group-item camp">
+                        <h5>Status:</h5>
+                        <% if !@campaign.full? %>
+                            <p>Accepting new players!</p>
+                        <% else %>
+                            <p>Not currently accepting new players.</p>
+                        <% end %>
+                    </li>
+                </ul>    
+            </div>
+            <br>
+        <% if @campaign.user == current_user %>
+            <div class="d-flex justify-content-around">
+                <%= link_to 'Edit', edit_campaign_path, class: 'btn btn-danger' %>
+                <%= link_to 'Delete', campaign_path(@campaign), method: :delete, data: {confirm: "Are you sure? This action can't be undone!"}, class: 'btn btn-danger' %>
+            </div>
+        <% else %>
+            <div class="d-flex justify-content-around">
+                <% signup = @campaign.signups.find_by(user: current_user) %>
+                <% if signup %>
+                    <% if signup.approved %>
+                        <%= link_to 'Leave Campaign', signup_path(signup), method: :delete, class: 'btn btn-danger' %>
                     <% else %>
-                        <p>Not currently accepting new players.</p>
+                        <h4 class="text-danger">Join request sent!</h4>
                     <% end %>
-                </li>
-            </ul>    
-        </div>
-        <br>
-        <div class="d-flex justify-content-around">
-            <% signup = @campaign.signups.find_by(user: current_user) %>
-            <% if signup %>
-                <% if signup.approved %>
-                    <%= link_to 'Leave Campaign', signup_path(signup), method: :delete, class: 'btn btn-success' %>
                 <% else %>
-                    <h4>Join request sent!</h4>
+                    <%= link_to 'Join', campaign_signups_path(@campaign), method: :post, class: 'btn btn-danger' %>
                 <% end %>
-            <% else %>
-                <%= link_to 'Join', campaign_signups_path(@campaign), method: :post, class: 'btn btn-success' %>
-            <% end %>
-        </div>
-    <% end %>
+            </div>
+        <% end %>
+    </div>
 </div>
