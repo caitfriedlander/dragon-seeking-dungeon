@@ -61,6 +61,10 @@ navbar {
 
 /* Home */
 
+.home {
+    margin-top: 10vh;
+}
+
 .landing-image {
     width: 150px;
     height: 160px;
@@ -93,6 +97,17 @@ form > div > h4 {
 
 .checkboxes > span {
     color: white;
+}
+
+/* login */
+
+.login-btn {
+    margin-top: 20px;
+    margin-bottom: -30px;
+}
+
+.login-container {
+    margin-top: 15vh;
 }
 
 /* User Page */

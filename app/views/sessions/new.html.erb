@@ -1,19 +1,23 @@
-<div class="row justify-content-center">
+<div class="row d-felx justify-content-center">
 
-  <div class="col-4 jumbotron ">
-    <h1>Log In</h1>
+  <div class="col-sm-4 jumbotron login-container">
+    <h1 class="d-flex justify-content-center">Log In</h1>
     <p id="alert"><%= alert %></p>
     <%= form_tag sessions_path do %>
       <div class="form-group">
-        <%= label_tag :email %>
+        <%= label_tag :email, 'Email:', class: "text-light" %>
         <%= text_field_tag :email, params[:email], class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= label_tag :password %>
+        <%= label_tag :password, 'Password:', class: "text-light" %>
         <%= password_field_tag :password, '', class: "form-control" %>
       </div>
-      <div class="form-group"><%= submit_tag "Log In", class: "btn btn-info" %></div>
+      <div class="form-group d-flex justify-content-around">
+        <%= submit_tag "Log In", class: "login-btn btn btn-danger" %>
+      </div>
     <% end %>
   </div>
-
+</div>
+<div class="footer container bg-dark col-sm-12 d-flex justify-content-center">
+        <span class="text-light">Built by <a href="https://github.com/caitfriedlander/dragon-seeking-dungeon" class="text-danger">Cait Friedlander</a> // 2018</span>
 </div>
