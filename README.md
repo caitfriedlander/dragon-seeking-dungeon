@@ -13,9 +13,9 @@ Dungeons & Dragons is a tabletop roleplaying game; a group of players create a s
 <a href="https://imgur.com/ZOtQLjZ"><img src="https://i.imgur.com/ZOtQLjZ.png" title="source: imgur.com" /></a>
 
 ## Technology
-**Dragon Seeking Dungeon** was built primarily with Ruby on Rails, using CSS, and HTML. The styling was done using the Bootstrap CSS framework.
+**Dragon Seeking Dungeon** was built primarily with Ruby on Rails, using CSS, HTML, and Postgresql. The styling was done using the Bootstrap CSS framework.
 
-user image uploading and storage are handled through AWS.
+User image uploading and storage are handled through AWS.
 
 <a href="https://imgur.com/HuvYYQS"><img src="https://i.imgur.com/HuvYYQS.png" title="source: imgur.com" /></a>
 
