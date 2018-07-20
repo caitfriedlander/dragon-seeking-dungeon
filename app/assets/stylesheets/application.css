@@ -22,9 +22,6 @@
  /* Global */
 
 h1 {
-    /* font-family: modesto-expanded, serif; */
-    /* font-style: normal;
-    font-weight: 900; */
     font-size: 36px;
     color: #dc3545;
 }
@@ -67,6 +64,17 @@ navbar {
 .landing-image {
     width: 150px;
     height: 160px;
+}
+
+.footer {
+    position: absolute;
+    width: 100vw;
+    margin-top: -100px; /* negative value of footer height */
+    margin-left: -15px;
+    height: 60px;
+    clear:both;
+    padding-top:20px;
+    bottom: 0;
 }
 
 /* Forms */
