@@ -13,11 +13,9 @@
  *= require_tree .
  *= require_self
  */
-
- /* body {
-     background-image: url("bg3.jpg");
-     background-repeat: repeat;
- } */
+html, body {
+    height: 100%;
+}
 
  /* Global */
 
@@ -64,6 +62,12 @@ navbar {
 .home {
     margin-top: 10vh;
 }
+
+/* .main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+} */
 
 .landing-image {
     width: 150px;
