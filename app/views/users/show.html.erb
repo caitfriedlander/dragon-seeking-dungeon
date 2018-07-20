@@ -1,150 +1,151 @@
-<% if @user.id == current_user[:id] %>  
-    <div class="aboutme jumbotron row d-flex justify-content-around">
-        <div class="col-sm-6">
-            <h2 class="d-flex justify-content-center"><%= @user.username %></h2>
-            <br>
-                <div class="profilepic d-flex justify-content-center">
-                    <% unless @user.image.attachment.nil? %>
-                        <img src="<%= rails_blob_path(@user.image) %>">
-                    <% else %>
-                        <%= image_tag 'wiz.png' %>
+<div class="row d-flex justify-content-center">
+    <% if @user.id == current_user[:id] %>  
+        <div class="aboutme jumbotron row justify-content-center">
+            <div class="col-sm-6">
+                <h2 class="d-flex justify-content-center"><%= @user.username %></h2>
+                <br>
+                    <div class="profilepic d-flex justify-content-center">
+                        <% unless @user.image.attachment.nil? %>
+                            <img src="<%= rails_blob_path(@user.image) %>">
+                        <% else %>
+                            <%= image_tag 'wiz.png' %>
+                        <% end %>
+                    </div>  
+                    <br>
+                    <h5>Bio: </h5>
+                    <p><%= @user.bio %></p>
+                <br>
+                <div class="d-flex justify-content-center">
+                    <%= link_to 'Edit', edit_user_path, class: "btn btn-danger" %>
+                </div>
+            </div>
+                <div class="col-sm-6" style="width: 18rem;">
+                    <div class="card-header bg-danger">
+                        About:
+                    </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Age: <%= @user.age %></li>
+                            <li class="list-group-item">Zipcode: <%= @user.zipcode %></li>
+                            <li class="list-group-item">Gender: <%= @user.gender %></li>
+                            <li class="list-group-item">Favorite Editions:&nbsp; 
+                                <% @user.editions.each do |edition| %>
+                                    <% if edition != @user.editions.last %>
+                                        <%= edition.name %>,&nbsp;
+                                    <% else %>
+                                        <%= edition.name %>
+                                    <% end %>
+                                <% end %>
+                            </li>
+                            <li class="list-group-item">Favorite Classes:&nbsp; 
+                                <% @user.roles.each do |role| %>
+                                    <% if role != @user.roles.last %>
+                                        <%= role.name %>,&nbsp;
+                                    <% else %>
+                                        <%= role.name %>
+                                    <% end %>
+                                <% end %>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+        <div class="mycampaigns jumbotron row d-flex justify-content-around col-sm-10">
+            <div class="card col-sm-5">
+                <div class="card-header bg-danger">
+                    My Campaigns
+                </div>
+                <ul class="list-group list-group-flush">
+                    <% @user.campaigns.each do |campaign| %>
+                        <li class="list-group-item"><%= link_to campaign.name, campaign %><%= ": Edition - #{campaign.edition.name} / #{campaign.online == true ? 'Online' : 'Offline'}" %></li>
                     <% end %>
-                </div>  
+                    <div class="d-flex justify-content-center">
+                        <li class="list-group-item"><button><%= link_to 'New', new_campaign_path %></button></li>
+                    </div>
+                </ul>
+            </div>
+            <div class="card col-sm-5">
+                <div class="card-header bg-danger">
+                    Playing In
+                </div>
+                <ul class="list-group list-group-flush">
+                    <% @signups.each do |signup| %>
+                        <% if signup.approved %>
+                            <li class="list-group-item"><%= link_to @campaigns.find(signup.campaign_id).name, campaign_path(signup.campaign_id) %><%= ": Edition - #{@campaigns.find(signup.campaign_id).edition.name} / #{@campaigns.find(signup.campaign_id).online == true ? 'Online' : 'Offline'}" %></li>
+                        <% end %>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+
+    <% else %>
+        <div class="aboutme jumbotron row">
+            <div class="col-sm-6">
+                <h2><%= @user.username %></h2>
+                <br>
+                <% unless @user.image.attachment.nil? %>
+                    <img src="<%= rails_blob_path(@user.image) %>">
+                <% else %>
+                    <%= image_tag 'wiz.png' %>
+                <% end %>
                 <br>
                 <h5>Bio: </h5>
                 <p><%= @user.bio %></p>
-            <br>
-            <div class="d-flex justify-content-center">
-                <button><%= link_to 'Edit', edit_user_path %></button>
-            </div>
-        </div>
-            <div class="col-sm-6" style="width: 18rem;">
-                <div class="card-header">
-                    About:
                 </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Age: <%= @user.age %></li>
-                        <li class="list-group-item">Zipcode: <%= @user.zipcode %></li>
-                        <li class="list-group-item">Gender: <%= @user.gender %></li>
-                        <li class="list-group-item">Favorite Editions:&nbsp; 
-                            <% @user.editions.each do |edition| %>
-                                <% if edition != @user.editions.last %>
-                                    <%= edition.name %>,&nbsp;
-                                <% else %>
-                                    <%= edition.name %>
+                <div class="col-sm-6" style="width: 18rem;">
+                    <div class="card-header">
+                        About:
+                    </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Age: <%= @user.age %></li>
+                            <li class="list-group-item">Zipcode: <%= @user.zipcode %></li>
+                            <li class="list-group-item">Gender: <%= @user.gender %></li>
+                            <li class="list-group-item">Favorite Editions:&nbsp; 
+                                <% @user.editions.each do |edition| %>
+                                    <% if edition != @user.editions.last %>
+                                        <%= edition.name %>,&nbsp;
+                                    <% else %>
+                                        <%= edition.name %>
+                                    <% end %>
                                 <% end %>
-                            <% end %>
-                        </li>
-                        <li class="list-group-item">Favorite Classes:&nbsp; 
-                            <% @user.roles.each do |role| %>
-                                <% if role != @user.roles.last %>
-                                    <%= role.name %>,&nbsp;
-                                <% else %>
-                                    <%= role.name %>
+                            </li>
+                            <li class="list-group-item">Favorite Classes:&nbsp; 
+                                <% @user.roles.each do |role| %>
+                                    <% if role != @user.roles.last %>
+                                        <%= role.name %>,&nbsp;
+                                    <% else %>
+                                        <%= role.name %>
+                                    <% end %>
                                 <% end %>
-                            <% end %>
-                        </li>
-                    </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div> 
+        </div> 
 
-    <div class="mycampaigns row">
-        <div class="card col-sm-6" style="width: 18rem;">
-            <div class="card-header">
-                My Campaigns
-            </div>
-            <ul class="list-group list-group-flush">
-                <% @user.campaigns.each do |campaign| %>
-                    <li class="list-group-item"><%= link_to campaign.name, campaign %><%= ": Edition - #{campaign.edition.name} / #{campaign.online == true ? 'Online' : 'Offline'}" %></li>
-                <% end %>
-                <div class="d-flex justify-content-center">
-                    <li class="list-group-item"><button><%= link_to 'New', new_campaign_path %></button></li>
+        <div class="mycampaigns row">
+            <div class="card col-sm-6" style="width: 18rem;">
+                <div class="card-header">
+                    <%= @user.username %>'s Campaigns
                 </div>
-            </ul>
-        </div>
-        <div class="card col-sm-6" style="width: 18rem;">
-            <div class="card-header">
-                Playing In
+                <ul class="list-group list-group-flush">
+                    <% @user.campaigns.each do |campaign| %>
+                        <li class="list-group-item"><%= link_to campaign.name, campaign %><%= ": Edition - #{campaign.edition.name} / #{campaign.online == true ? 'Online' : 'Offline'}" %></li>
+                    <% end %>
+                </ul>
             </div>
-            <ul class="list-group list-group-flush">
-                <% @signups.each do |signup| %>
-                    <% if signup.approved %>
+            <div class="card col-sm-6" style="width: 18rem;">
+                <div class="card-header">
+                    Playing In
+                </div>
+                <ul class="list-group list-group-flush">
+                    <% @signups.each do |signup| %>
                         <li class="list-group-item"><%= link_to @campaigns.find(signup.campaign_id).name, campaign_path(signup.campaign_id) %><%= ": Edition - #{@campaigns.find(signup.campaign_id).edition.name} / #{@campaigns.find(signup.campaign_id).online == true ? 'Online' : 'Offline'}" %></li>
                     <% end %>
-                <% end %>
-            </ul>
-        </div>
-    </div>
-
-<% else %>
-
-    <div class="aboutme jumbotron row">
-        <div class="col-sm-6">
-            <h2><%= @user.username %></h2>
-            <br>
-            <% unless @user.image.attachment.nil? %>
-                <img src="<%= rails_blob_path(@user.image) %>">
-            <% else %>
-                <%= image_tag 'wiz.png' %>
-            <% end %>
-            <br>
-            <h5>Bio: </h5>
-            <p><%= @user.bio %></p>
-            </div>
-            <div class="col-sm-6" style="width: 18rem;">
-                <div class="card-header">
-                    About:
-                </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Age: <%= @user.age %></li>
-                        <li class="list-group-item">Zipcode: <%= @user.zipcode %></li>
-                        <li class="list-group-item">Gender: <%= @user.gender %></li>
-                        <li class="list-group-item">Favorite Editions:&nbsp; 
-                            <% @user.editions.each do |edition| %>
-                                <% if edition != @user.editions.last %>
-                                    <%= edition.name %>,&nbsp;
-                                <% else %>
-                                    <%= edition.name %>
-                                <% end %>
-                            <% end %>
-                        </li>
-                        <li class="list-group-item">Favorite Classes:&nbsp; 
-                            <% @user.roles.each do |role| %>
-                                <% if role != @user.roles.last %>
-                                    <%= role.name %>,&nbsp;
-                                <% else %>
-                                    <%= role.name %>
-                                <% end %>
-                            <% end %>
-                        </li>
-                    </ul>
-                </div>
+                </ul>
             </div>
         </div>
-    </div> 
-
-    <div class="mycampaigns row">
-        <div class="card col-sm-6" style="width: 18rem;">
-            <div class="card-header">
-                <%= @user.username %>'s Campaigns
-            </div>
-            <ul class="list-group list-group-flush">
-                <% @user.campaigns.each do |campaign| %>
-                    <li class="list-group-item"><%= link_to campaign.name, campaign %><%= ": Edition - #{campaign.edition.name} / #{campaign.online == true ? 'Online' : 'Offline'}" %></li>
-                <% end %>
-            </ul>
-        </div>
-        <div class="card col-sm-6" style="width: 18rem;">
-            <div class="card-header">
-                Playing In
-            </div>
-            <ul class="list-group list-group-flush">
-                <% @signups.each do |signup| %>
-                    <li class="list-group-item"><%= link_to @campaigns.find(signup.campaign_id).name, campaign_path(signup.campaign_id) %><%= ": Edition - #{@campaigns.find(signup.campaign_id).edition.name} / #{@campaigns.find(signup.campaign_id).online == true ? 'Online' : 'Offline'}" %></li>
-                <% end %>
-            </ul>
-        </div>
-    </div>
-<% end %>
+    <% end %>
+</div>

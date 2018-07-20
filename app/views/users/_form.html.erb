@@ -62,7 +62,7 @@
         <%= role.name %>: <%= check_box_tag 'roles[]', role.id, (current_user ? current_user.roles.exists?(role.id) : false) %>
       <% end %>
     </div>
-    <div class="actions justify-content-center">
+    <div class="actions d-flex justify-content-around">
       <%= f.submit 'Submit', class: "btn btn-danger" %> 
       <%= link_to 'Cancel', @user, class: "btn btn-danger" %>
     </div>

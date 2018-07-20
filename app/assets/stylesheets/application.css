@@ -26,6 +26,10 @@ h1 {
     font-size: 36px;
 }
 
+h2 {
+    color: red;
+}
+
 td {
     text-decoration: none;
     color: white;
@@ -42,7 +46,7 @@ li {
  }
 
 .jumbotron {
-     background-color: rgba(173, 216, 230, 1);
+     background-color: rgba(0, 0, 0, .8);
  }
 
 .nav {
@@ -52,4 +56,26 @@ li {
 .badge {
      display: inline-block;
      margin-top: 12px;
+ }
+
+ navbar {
+     width: 100%;
+ }
+
+ .aboutme {
+     width: 80%;
+ }
+
+ .mycampaigns {
+    margin-left: 10%;
+    width: 80%;
+ }
+
+ .searchheader {
+    display: inline-block;
+    margin-top: 8px;
+ }
+
+ a {
+     color: red;
  }

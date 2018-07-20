@@ -36,7 +36,7 @@
         <%= select(:campaign, "edition_id", Edition.all.collect {|e| [e.name, e.id]}, {include_blank: true}, class: "form-control") %>
       </div>
       <br>
-      <div><%= f.submit 'Submit', class: "btn btn-danger" %></div>
+      <div><%= f.submit 'Submit', class: "btn btn-danger d-flex justify-content-center" %></div>
     <% end %>
   </div>
 </div>
