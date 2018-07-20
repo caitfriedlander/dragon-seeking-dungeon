@@ -5,7 +5,7 @@
 ## [Dragon Seeking Dungeon](https://dragon-seeking-dungeon.herokuapp.com/)
 
 Dungeons & Dragons is a tabletop roleplaying game; a group of players create a story (called a campaign) together using dice rolls to determine their fate. It's a lot of fun but it can also be hard to find a group of like-minded people to play with. This is where **Dragon Seeking Dungeon** comes in!
-
+<a href="https://imgur.com/PUE7sfQ"><img src="https://i.imgur.com/PUE7sfQ.png" title="source: imgur.com" /></a>
 ![DSD2](https://imgur.com/MFtjIb2)
 
 **Dragon Seeking Dungeon** is a group finding app for D&D players. Users can sign up and eaither create a campaign or send requests to join other players campaigns. There's a custom campaign search engine and dynamic notifications.
@@ -17,7 +17,7 @@ Dungeons & Dragons is a tabletop roleplaying game; a group of players create a s
 
 user image uploading and storage are handled through AWS.
 
-![DSD4](https://imgur.com/HuvYYQS)
+![DSD4]('https://imgur.com/HuvYYQS')
 
 ## Resources
 
